@@ -506,3 +506,41 @@
    border-radius: 10px;
    margin-bottom: 15px;
  }
+
+ footer {
+   background-color: var(--c-black);
+   color: var(--c-white);
+ }
+
+ .footer__title {
+   display: flex;
+   color: var(--c-pink);
+ }
+
+ .footer__more,
+ .footer__stories {
+   font-size: 2.188rem;
+ }
+
+ .footer__qustion {
+   font-size: 4.688rem;
+   margin-left: -20px;
+ }
+
+ .footer__stories{
+  margin-top: 75px;
+  margin-left: -75px;
+ }
+
+ .footer__more{
+  margin-left: 40px;
+ }
+
+ .footer__active{
+  color: var(--c-pink);
+ }
+
+ .footer__container{
+  display: flex;
+  padding-bottom: 25px;
+ }
