@@ -369,3 +369,9 @@
  .section4__action{
   margin-left: 10px;
  }
+
+ .section5__highlight{
+  background-color: var(--c-black);
+  color: var(--c-white);
+  padding: 3px;
+ }
