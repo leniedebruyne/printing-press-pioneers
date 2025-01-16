@@ -296,3 +296,26 @@
    padding: 10px 20px;
    margin-bottom: 15px;
  }
+
+ .section3__word{
+  font-weight: bold;
+  color: var(--c-blue);
+  font-size: 3.125rem;
+  text-align: end;
+  margin-bottom: -30px;
+  transform: rotate(-20deg);
+ }
+
+ .section3__hightlight{
+  color: var(--c-blue);
+  font-weight: 600;
+ }
+
+ .section3__year{
+  display: flex;
+  justify-content: center;
+  font-size: 7rem;
+  font-weight: 600;
+  color: var(--c-blue);
+  margin-top: 75px;
+ }
