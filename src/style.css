@@ -446,3 +446,36 @@
    background-color: var(--c-black);
    border-radius: 50%;
  }
+
+
+ .section7__quote {
+   font-family: var(--font-title);
+   font-size: 6.25rem;
+   color: var(--c-blue);
+   margin-bottom: -20px;
+ }
+
+ .section7__quotecontainer {
+   display: flex;
+   justify-content: end;
+   margin-top: -75px;
+ }
+
+ .section7__bodycopy {
+   max-width: 300px;
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+
+ }
+
+ .section7__title {
+   display: flex;
+   justify-content: center;
+ }
+
+ .section7__highlight{
+  color: var(--c-white);
+  background-color: var(--c-blue);
+  padding: 3px;
+ }
