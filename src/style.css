@@ -67,6 +67,10 @@
    align-items: flex-start;
    justify-content: flex-start;
    padding-bottom: 25px;
+
+   position: sticky;
+   z-index: 10;
+   margin: 0;
  }
 
  .nav__menu {
@@ -91,6 +95,20 @@
  nav a:hover {
    color: var(--c-pink);
  }
+
+
+.nav__list a {
+  text-decoration: none;
+  color: var(--c-white);
+  transition: color 0.3s ease;
+}
+
+.nav__list a.active {
+  color: var(--c-pink);
+}
+
+
+
 
  .nav__button {
    margin-left: 20px;
@@ -597,6 +615,9 @@
      justify-content: left;
      align-items: center;
      padding: 20px 0;
+     position: sticky;
+     top: 0;
+     z-index: 10;
    }
 
    .nav__hamburger {
@@ -674,7 +695,7 @@
    }
 
    .header__break {
-    display: block;
+     display: block;
    }
 
    .header__word {
