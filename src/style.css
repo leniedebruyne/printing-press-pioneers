@@ -372,44 +372,55 @@
    padding: 3px;
  }
 
+
  .section6 {
    background: linear-gradient(to bottom, var(--c-pink) 0%, var(--c-pink) 70%, var(--c-white) 80%);
    overflow-x: hidden;
  }
 
- .section6__title {
-   display: flex;
-   justify-content: center;
-   color: var(--c-white);
- }
-
  .section6__word {
+   color: var(--c-white);
    font-size: 3.125rem;
-   margin-left: 50px;
+   margin-left: -20px;
  }
 
  .section6__collection {
-   margin-top: 80px;
-   margin-left: -75px;
+   color: var(--c-white);
+   font-family: var(--font-title);
+   font-size: 1.563rem;
+   margin-top: -30px;
+   margin-right: -100px;
+ }
+
+ .section6__title {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   text-align: center;
+   margin-bottom: 20px;
  }
 
  .section6__cards {
    display: flex;
-   width: 100%;
- }
-
- .section6__card1,
- .section6__card2,
- .section6__card3 {
-   color: var(--c-white);
-   max-width: 100%;
-
+   flex-wrap: nowrap;
+   overflow-x: auto;
+   gap: 20px;
+   scroll-snap-type: x mandatory;
  }
 
  .section6__container {
    position: relative;
    width: 308px;
-   height: 413px;
+   height: 390px;
+   flex: 0 0 auto;
+ }
+
+ .section6__card {
+   width: 100%;
+   height: 100%;
+   border-radius: 10px;
+   object-fit: cover;
+   display: block;
  }
 
  .section6__overlay {
@@ -418,14 +429,21 @@
    left: 0;
    right: 0;
    bottom: 0;
+   background-color: rgba(0, 0, 0, 0.8);
+   color: var(--c-white);
    display: flex;
    flex-direction: column;
-   background-color: rgba(31, 30, 30, 0.7);
-   border-radius: 20px;
-
    justify-content: center;
    align-items: center;
    text-align: center;
+   padding: 15px;
+   border-radius: 10px;
+   opacity: 0;
+   transition: opacity 0.3s ease;
+ }
+
+ .section6__container:hover .section6__overlay {
+   opacity: 1;
  }
 
  .section6__circles {
@@ -923,5 +941,35 @@
      margin-bottom: -1px;
    }
 
+   .section6 {
+     background: linear-gradient(to bottom, var(--c-pink) 0%, var(--c-pink) 70%, var(--c-white) 70%, var(--c-white) 100%);
+   }
 
+   .section6__cards {
+     gap: 200px;
+   }
+
+   .section6__container {
+     width: 406px;
+     height: 544px;
+   }
+
+   .section6__card {
+     border-radius: 20px;
+   }
+
+   .section6__overlay {
+     padding: 20px;
+     border-radius: 20px;
+   }
+
+   .section6__word{
+    font-size: 9.375rem;
+   }
+
+   .section6__collection{
+    font-size: 3.125rem;
+    margin-right: -200px;
+    margin-top: -50px;
+   }
  }
