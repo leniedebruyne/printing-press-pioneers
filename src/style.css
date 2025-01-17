@@ -475,12 +475,12 @@
    margin-bottom: -20px;
  }
 
- .section7__quote--left{
-  margin-left: -300px;
+ .section7__quote--left {
+   margin-left: -300px;
  }
 
- .section7__quote--right{
-  margin-left: 300px;
+ .section7__quote--right {
+   margin-left: 300px;
  }
 
  .section7__quotecontainer {
@@ -1014,35 +1014,91 @@
      font-size: 15.625rem;
    }
 
-   .section8__title{
-    min-width: 775px;
+   .section8__title {
+     min-width: 775px;
    }
 
-   .section8__find{
-    min-width: 880px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    z-index: 4;
-    background-color: var(--c-white);
+   .section8__find {
+     min-width: 880px;
+     display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+     align-items: center;
+     padding: 20px;
+     z-index: 4;
+     background-color: var(--c-white);
    }
 
-   .section8__room{
-    width: 100%;
-    height: auto;
-    margin-top: -50px;
-    z-index: 0;
+   .section8__room {
+     width: 100%;
+     height: auto;
+     margin-top: -50px;
+     z-index: 0;
    }
 
-   .section8__perchament{
-    width: 175px;
-    height: 221px;
+   .section8__perchament {
+     width: 175px;
+     height: 221px;
    }
 
-   .section8__painting{
-    width: 122px;
-    height: 186px;
+   .section8__painting {
+     width: 122px;
+     height: 186px;
    }
+
+
+footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  grid-gap: 20px;
+  align-items: start;
+}
+
+.footer__title {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+
+.footer__persons {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+}
+
+.footer__text {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}
+
+.footer__container {
+  grid-column: 2 / 3;
+  grid-row: 3 / 4;
+  align-self: start;
+  margin-top: -20px;
+}
+
+.footer__more {
+  font-size: 6.25rem;
+  margin-top: 150px;
+}
+
+.footer__info {
+  grid-column: 2 / 3;
+  grid-row: 1 / 3;
+  align-self: center;
+}
+
+.footer__stories {
+  font-size: 6.25rem;
+  margin-top: 230px;
+}
+
+.footer__qustion {
+  font-size: 12.5rem;
+}
+
+.footer__text {
+  max-width: 500px;
+}
+
  }
