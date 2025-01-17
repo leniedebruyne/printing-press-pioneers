@@ -807,7 +807,7 @@
        -2px -2px 0px var(--c-pink),
        -2px 2px 0px var(--c-pink),
        2px -2px 0px var(--c-pink);
-       font-size: 6.25rem;
+     font-size: 6.25rem;
    }
 
    .section3__year {
@@ -832,6 +832,71 @@
    .section3__title,
    .section3__text {
      margin-left: 100px;
+   }
+
+   .section4 {
+     display: flex;
+     align-items: flex-start;
+     justify-content: flex-start;
+     position: relative;
+     padding-bottom: 100px;
+   }
+
+   .section4__exclamation {
+     margin-right: 10px;
+     font-size: 62.5rem;
+     color: var(--c-black);
+     margin-top: 300px;
+     margin-bottom: 0;
+   }
+
+   .section4__title {
+     margin-left: -100px;
+   }
+
+   .section4__text {
+     margin-top: 10px;
+     margin-left: 10px;
+     min-width: 500px;
+   }
+
+   .section4__title,
+   .section4__text {
+     margin-left: 20px;
+   }
+
+   .section4__escape {
+     margin-top: 560px;
+     margin-left: -475px;
+     position: relative;
+     z-index: 2;
+   }
+
+   .section4__rectangle {
+     width: 1100px;
+     position: absolute;
+     top: 0;
+     left: 0;
+     z-index: 3;
+   }
+
+   .door {
+     position: absolute;
+     right: 0;
+     top: -150px;
+     z-index: 1;
+   }
+
+   .section4__plantin {
+     position: absolute;
+     margin-top: -175px;
+     width: 153px;
+     height: 196px;
+   }
+
+   .section4__action {
+     margin-top: 50px;
+     margin-left: -25px;
    }
 
  }
