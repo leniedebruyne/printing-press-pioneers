@@ -460,6 +460,12 @@
    border-radius: 50%;
  }
 
+ .section7 {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+ }
 
  .section7__quote--left,
  .section7__quote--right {
@@ -467,6 +473,14 @@
    font-size: 6.25rem;
    color: var(--c-blue);
    margin-bottom: -20px;
+ }
+
+ .section7__quote--left{
+  margin-left: -300px;
+ }
+
+ .section7__quote--right{
+  margin-left: 300px;
  }
 
  .section7__quotecontainer {
@@ -997,6 +1011,6 @@
 
    .section7__quote--right {
      margin-right: -500px;
-    font-size: 15.625rem;
+     font-size: 15.625rem;
    }
  }
