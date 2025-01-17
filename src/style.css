@@ -777,9 +777,61 @@
      display: block;
    }
 
-   .hand{
-    position: absolute;
-    right: 0;
-    top: 2100px;
+   .hand {
+     position: absolute;
+     right: 0;
+     top: 2100px;
    }
+
+   .section3 {
+     display: flex;
+     flex-direction: column;
+     align-items: flex-start;
+     padding-bottom: 100px;
+   }
+
+   .section3__word,
+   .section3__title {
+     display: flex;
+     align-items: center;
+     margin: 0;
+   }
+
+   .section3__word {
+     margin-left: 800px;
+     margin-top: 150px;
+     position: absolute;
+     color: var(--c-white);
+     text-shadow:
+       2px 2px 0px var(--c-pink),
+       -2px -2px 0px var(--c-pink),
+       -2px 2px 0px var(--c-pink),
+       2px -2px 0px var(--c-pink);
+       font-size: 6.25rem;
+   }
+
+   .section3__year {
+     align-self: flex-end;
+     margin-top: -130px;
+     font-size: 16.875rem;
+   }
+
+   .section3__year,
+   .section3__text {
+     display: inline;
+   }
+
+   .section3__text {
+     max-width: 600px;
+   }
+
+   .section3__title {
+     margin-top: 200px;
+   }
+
+   .section3__title,
+   .section3__text {
+     margin-left: 100px;
+   }
+
  }
