@@ -899,4 +899,29 @@
      margin-left: -25px;
    }
 
+   .section5__text {
+     max-width: 700px;
+     margin-left: 20px;
+   }
+
+   .section5 {
+     display: flex;
+     align-items: flex-start;
+     align-items: center;
+     padding-bottom: 0;
+   }
+
+   .section5__bodycopy {
+     display: flex;
+     flex-direction: column;
+     justify-content: flex-start;
+     margin-left: 100px;
+   }
+
+   .section5__title {
+     margin-left: 10px;
+     margin-bottom: -1px;
+   }
+
+
  }
