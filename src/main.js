@@ -1,3 +1,5 @@
+import "./style.css"
+
 const hamburger = document.querySelector('.nav__hamburger');
 const menu = document.querySelector('.nav__menu');
 
