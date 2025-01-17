@@ -1013,4 +1013,36 @@
      margin-right: -500px;
      font-size: 15.625rem;
    }
+
+   .section8__title{
+    min-width: 775px;
+   }
+
+   .section8__find{
+    min-width: 880px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    z-index: 4;
+    background-color: var(--c-white);
+   }
+
+   .section8__room{
+    width: 100%;
+    height: auto;
+    margin-top: -50px;
+    z-index: 0;
+   }
+
+   .section8__perchament{
+    width: 175px;
+    height: 221px;
+   }
+
+   .section8__painting{
+    width: 122px;
+    height: 186px;
+   }
  }
