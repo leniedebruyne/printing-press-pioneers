@@ -1,3 +1,4 @@
+/* import "./reset.css" */
 import "./style.css"
 
 const hamburger = document.querySelector('.nav__hamburger');

@@ -192,6 +192,10 @@
    padding: 0 20px;
  }
 
+ .header__break {
+   display: none;
+ }
+
  .section1,
  .section2,
  .section3,
@@ -665,8 +669,12 @@
    .header__intro {
      color: var(--c-white);
      max-width: 510px;
-     margin-left: 1000px;
-     margin-top: -100px;
+     margin-left: 800px;
+     margin-top: -155px;
+   }
+
+   .header__break {
+    display: block;
    }
 
    .header__word {
