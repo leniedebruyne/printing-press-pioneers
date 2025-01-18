@@ -14,6 +14,9 @@ const draggableItems = document.querySelectorAll('.section8__perchament, .sectio
 const dropzones = document.querySelectorAll('.dropzone');
 let draggedItem = null;
 
+let hasAlertShownSection2 = false; 
+let hasAlertShownSection4 = false;
+let hasAlertShownSection8 = false;
 
 
 hamburger.addEventListener('click', () => {
@@ -113,6 +116,52 @@ const setupDragAndDrop = () => {
 };
 
 
+const checkSectionVisibility = () => {
+  const section2 = document.getElementById('section2');
+  const rect2 = section2.getBoundingClientRect();
+  const section2Middle = rect2.top + rect2.height / 2;
+
+  // Als de pop-up voor section 2 al is getoond, doe dan verder niets
+  if (hasAlertShownSection2) return;
+
+  //  toon als section 2 in het midden is
+  if (section2Middle >= 0 && section2Middle <= window.innerHeight) {
+    alert("Guess which letter it is and type it on your keyboard or press it on your phone. Then you will see a factoid.");
+    hasAlertShownSection2 = true; //pop up maar 1 keer tonen
+  }
+
+
+  const section4 = document.getElementById('section4');
+  const rect4 = section4.getBoundingClientRect();
+  const section4Middle = rect4.top + rect4.height / 2;
+
+  // Als de pop-up voor section 4 al is getoond, doe dan verder niets
+  if (hasAlertShownSection4) return;
+
+  // toon als section 4 in het midden is
+  if (section4Middle >= 0 && section4Middle <= window.innerHeight) {
+    alert("Make yourself heard just as Plantin did, shout as loudly as you can to help him escape!");
+    hasAlertShownSection4 = true; //pop up maar 1 keer tonen
+  }
+
+
+  const section8 = document.getElementById('section8');
+  const rect8 = section8.getBoundingClientRect();
+  const section8Middle = rect8.top + rect8.height / 2;
+
+  // Als de pop-up voor section 8 al is getoond, doe dan verder niets
+  if (hasAlertShownSection8) return;
+
+  // toon als section 8 in het midden is
+  if (section8Middle >= 0 && section8Middle <= window.innerHeight) {
+    alert("Find the images that describe the word and drag it to the correct word.");
+    hasAlertShownSection8 = true; //pop up maar 1 keer tonen
+  }
+};
+
+window.addEventListener('scroll', checkSectionVisibility);
+window.addEventListener('load', checkSectionVisibility);
+
 
 const init = () => {
   setActiveLink();
@@ -122,5 +171,6 @@ const init = () => {
 
 init();
 
+// popup: https://www.w3schools.com/js/js_popup.asp
 // dropzone: https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API/File_drag_and_drop
 // roepen: https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Visualizations_with_Web_Audio_API
