@@ -10,6 +10,11 @@ const links = document.querySelectorAll('.nav__list a');
 const image = document.querySelector('.section4__plantin');
 let position = 0;
 
+const draggableItems = document.querySelectorAll('.section8__perchament, .section8__painting');
+const dropzones = document.querySelectorAll('.dropzone');
+let draggedItem = null;
+
+
 
 hamburger.addEventListener('click', () => {
   menu.classList.toggle('visible');
@@ -65,13 +70,57 @@ const setupVoiceDetection = () => {
 };
 
 
+const setupDragAndDrop = () => {
+  // Maak afbeeldingen versleepbaar
+  draggableItems.forEach((item) => {
+    item.addEventListener('dragstart', (e) => {
+      draggedItem = e.target;
+      e.dataTransfer.setData('text/plain', e.target.className);
+    });
+
+    item.addEventListener('dragend', () => {
+      draggedItem = null;
+    });
+  });
+
+  // dropzones
+  dropzones.forEach((zone) => {
+    zone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      zone.classList.add('over');
+    });
+
+    zone.addEventListener('dragleave', () => {
+      zone.classList.remove('over');
+    });
+
+    zone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      zone.classList.remove('over');
+
+      // Controleer of het juiste item is gedropt
+      const itemType = draggedItem.alt.toLowerCase();
+      const zoneType = zone.dataset.item;
+
+      if (itemType === zoneType) {
+        zone.style.color = 'black';
+        draggedItem.style.visibility = 'hidden';
+      } else {
+        alert('Wrong match!');
+      }
+    });
+  });
+};
+
+
 
 const init = () => {
   setActiveLink();
   setupVoiceDetection();
+  setupDragAndDrop();
 }
 
 init();
 
-
-// https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Visualizations_with_Web_Audio_API
+// dropzone: https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API/File_drag_and_drop
+// roepen: https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Visualizations_with_Web_Audio_API

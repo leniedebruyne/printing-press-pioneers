@@ -922,8 +922,8 @@
      position: absolute;
      left: 0;
      right: 0;
-     bottom: 15px;
-     height: 5px;
+     bottom: 0.938rem;
+     height: 0.313rem;
      background-color: var(--c-white);
    }
 
@@ -995,6 +995,7 @@
      align-items: flex-start;
      align-items: center;
      padding-bottom: 0;
+     gap: 1.25rem;
    }
 
    .section5__bodycopy {
@@ -1009,13 +1010,23 @@
      margin-bottom: -0.063rem;
    }
 
+   .section5__line {
+     position: absolute;
+     width: 0.313rem;
+     background-color: var(--c-blue);
+     height: 44.25rem;
+     margin-left: 29.375rem;
+     margin-top: -44.063rem;
+   }
+
+
    .section6 {
      background: linear-gradient(to bottom,
          var(--c-pink) 0%,
-         var(--c-pink) calc(15px - 2.5px),
-         var(--c-white) 15px,
-         var(--c-white) calc(15px + 5px),
-         var(--c-pink) calc(15px + 5px),
+         var(--c-pink) calc(0.938rem - 0.094rem),
+         var(--c-white) 0.938rem,
+         var(--c-white) calc(0.938rem + 0.313rem),
+         var(--c-pink) calc(0.938rem + 0.313rem),
          var(--c-pink) 100%);
    }
 
@@ -1098,12 +1109,39 @@
    .section8__perchament {
      width: 10.938rem;
      height: 13.813rem;
+     position: absolute;
+     margin-top: 700px;
+     margin-left: 600px;
+     transform: rotate(20deg);
    }
 
    .section8__painting {
      width: 7.625rem;
      height: 11.625rem;
+     position: absolute;
+     margin-top: 300px;
+     margin-left: -675px;
    }
+
+
+   .dropzone {
+     border: 2px dashed transparent;
+     padding: 0.5rem;
+     transition: border-color 0.3s ease;
+   }
+
+   .dropzone.over {
+     border-color: black;
+     /* Highlight de dropzone wanneer iets eroverheen wordt gesleept */
+   }
+
+   .section8__perchament,
+   .section8__painting {
+     cursor: grab;
+     /* Geef aan dat ze versleepbaar zijn */
+   }
+
+
 
 
    footer {

@@ -50,7 +50,8 @@
     </div>
     <img src="./public/png/plantin.png" alt="header image" width="258" height="330" class="header__image">
     <button type="button" class="header__button">discover the story</button>
-    <p class="header__intro">Discover the fascinating <br class="header__break"> story of Christoffel Plantin. <br class="header__break"> Explore the world of the <br class="header__break"> printing
+    <p class="header__intro">Discover the fascinating <br class="header__break"> story of Christoffel Plantin. <br
+        class="header__break"> Explore the world of the <br class="header__break"> printing
       press and experience <br class="header__break">
       it yourself on an interactive website.</p>
   </header>
@@ -161,8 +162,11 @@
     </section>
 
     <section class="section5">
-      <img src="./public/png/woodblock.png" alt="woodblock painting" class="viually-hidden woodblock_painting"
-        width="460" height="703">
+      <div class="section5__image-container">
+        <img src="./public/png/woodblock.png" alt="woodblock painting" class="viually-hidden woodblock_painting"
+          width="460" height="703">
+        <div class="section5__line"></div>
+      </div>
       <div class="section5__bodycopy">
         <h2 class="section5__title">The polyglot Bible</h2>
         <div class="section5__text">
@@ -170,12 +174,10 @@
             protectors in
             this period. He developed a plan that he suspected would be of interest to the ultra-Catholic King Philip
             II:
-            a
-            scholarly edition of the Biblical texts that would be the largest polyglot (multilingual) <b
+            a scholarly edition of the Biblical texts that would be the largest polyglot (multilingual) <b
               class="section5__highlight">Bible of the 16th
               century.</b>
           </p>
-
           <p>The plan worked: in September 1567, Plantin learned that Philip II was willing to provide <b
               class="section5__highlight">financial support</b>. In
             March
@@ -291,13 +293,15 @@
     <section class="section8">
       <h2 class="section8__title">Search things from <b class="section8__highlight">plantin’s</b> room</h2>
       <div class="section8__find">
-        <p>parchment</p>
-        <p>painting</p>
-        <p>find the last element in the museum</p>
+        <p class="dropzone" data-item="parchment">parchment</p>
+        <p class="dropzone" data-item="painting">painting</p>
+        <p class="dropzone">find the last element in the museum</p>
       </div>
       <img src="./public/png/room.png" alt="plantin's room" width="390" height="229" class="section8__room">
-      <img src="./public/png/perchament.png" alt="perchament" width="70" height="70" class="section8__perchament">
-      <img src="./public/png/painting.png" alt="painting" width="43" height="62" class="section8__painting">
+      <img src="./public/png/perchament.png" alt="parchment" width="70" height="70" class="section8__perchament"
+        draggable="true">
+      <img src="./public/png/painting.png" alt="painting" width="43" height="62" class="section8__painting"
+        draggable="true">
     </section>
 
     <footer>
