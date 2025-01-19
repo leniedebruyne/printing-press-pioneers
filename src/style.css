@@ -8,6 +8,10 @@
    box-sizing: inherit;
  }
 
+ * {
+   box-sizing: border-box;
+ }
+
  :root {
    --font-bodycopy: 'Roboto', sans-serif;
    --font-title: 'EB Garamond', serif;
@@ -855,7 +859,7 @@
    .hand {
      position: absolute;
      right: 0;
-     top: 131.25rem;
+     margin-top: 20rem;
    }
 
    .section3 {
@@ -936,7 +940,7 @@
    }
 
    .section4__title {
-     margin-left: -6.25rem;
+     margin-left: -8.25rem;
    }
 
    .section4__text {
@@ -946,7 +950,6 @@
      font-weight: 600;
    }
 
-   .section4__title,
    .section4__text {
      margin-left: 1.25rem;
    }
@@ -1066,8 +1069,8 @@
    }
 
    .section7__title {
-     min-width: 43.75rem;
-     margin-right: -4.688rem;
+     min-width: 50.75rem;
+     margin-right: -7.688rem;
    }
 
    .section7__text {
