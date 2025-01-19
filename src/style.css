@@ -849,7 +849,9 @@
    }
 
    .section2__fact--text {
+     display: none;
      margin-top: -0.625rem;
+     max-width: 400px;
    }
 
    .viually-hidden {

@@ -18,6 +18,11 @@ let hasAlertShownSection2 = false;
 let hasAlertShownSection4 = false;
 let hasAlertShownSection8 = false;
 
+const factText = document.querySelector('.section2__fact--text');
+const allLetters = document.querySelectorAll('.section2__pressletters img');
+
+const typeSound = new Audio('./public/type.mp3');
+
 
 hamburger.addEventListener('click', () => {
   menu.classList.toggle('visible');
@@ -164,9 +169,64 @@ window.addEventListener('load', checkSectionVisibility);
 
 
 
+const setFactText = (letter) => {
+  // verwijder alle vergrote afbeeldingen
+  allLetters.forEach(letter => letter.style.transform = 'scale(1)');
+
+  typeSound.play();
+
+  if (letter === 'p') {
+    factText.style.display = 'block';
+    factText.textContent = 'In the past, they could only print in black and red. Have you ever seen a book with other colors? Then it was hand-colored—how cool is that?';
+    document.querySelector('.section2__pressletters--p').style.transform = 'scale(1.2)';
+  }
+  if (letter === 'l') {
+    factText.style.display = 'block';
+    factText.textContent = 'They used to have to put their printing letters in mirror image? That\'s how the letter ended up being printed correctly.';
+    document.querySelector('.section2__pressletters--l').style.transform = 'scale(1.2)';
+  }
+  if (letter === 'a') {
+    factText.style.display = 'block';
+    factText.textContent = 'In the Plantin-Moretus museum, there’s a hidden “P” carved into the doorframe. It’s a symbol of the Plantin family and is believed to be a good luck charm.';
+    document.querySelector('.section2__pressletters--a').style.transform = 'scale(1.2)';
+  }
+  if (letter === 'n') {
+    factText.style.display = 'block';
+    factText.textContent = 'The logo of the Plantin-Moretus press featured a compass, symbolizing work, determination, and precision—reflecting the careful craftsmanship Plantin valued in his printing work.';
+    document.querySelector('.section2__pressletters--n').style.transform = 'scale(1.2)';
+  }
+  if (letter === 't') {
+    factText.style.display = 'block';
+    factText.textContent = 'Plantin’s press played a key role in the spread of the Protestant Reformation by printing pamphlets and books in multiple languages.';
+    document.querySelector('.section2__pressletters--t').style.transform = 'scale(1.2)';
+  }
+  if (letter === 'i') {
+    factText.style.display = 'block';
+    factText.textContent = 'Plantin’s press produced the famous "Biblia Polyglotta", a Bible printed in five languages to promote religious tolerance.';
+    document.querySelector('.section2__pressletters--i').style.transform = 'scale(1.2)';
+  }
+};
+
+document.addEventListener('keydown', (event) => {
+  const key = event.key.toLowerCase();
+  if (['p', 'l', 'a', 'n', 't', 'i'].includes(key)) {
+    setFactText(key);
+  }
+});
+
+if (window.matchMedia('(max-width: 90em)').matches) {
+  allLetters.forEach(letter => {
+    letter.addEventListener('click', () => {
+      const clickedLetter = letter.getAttribute('data-letter');
+      setFactText(clickedLetter);
+    });
+  });
+}
+
+
+
 
 gsap.registerPlugin(ScrollTrigger);
-
 
 const scrollSilent = () => {
   gsap.fromTo(
