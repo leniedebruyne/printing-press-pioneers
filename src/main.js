@@ -14,7 +14,7 @@ const draggableItems = document.querySelectorAll('.section8__perchament, .sectio
 const dropzones = document.querySelectorAll('.dropzone');
 let draggedItem = null;
 
-let hasAlertShownSection2 = false; 
+let hasAlertShownSection2 = false;
 let hasAlertShownSection4 = false;
 let hasAlertShownSection8 = false;
 
@@ -163,10 +163,148 @@ window.addEventListener('scroll', checkSectionVisibility);
 window.addEventListener('load', checkSectionVisibility);
 
 
+
+
+gsap.registerPlugin(ScrollTrigger);
+
+
+const scrollSilent = () => {
+  gsap.fromTo(
+    ".header__word",
+    { opacity: 0, y: 50 },
+    {
+      opacity: 1,
+      y: 0,
+      scrollTrigger: {
+        trigger: "header",
+        start: "top +=100",
+        end: "+=500",
+        scrub: true,
+        pin: true,
+      },
+    }
+  );
+};
+
+const scrollTitleEffect = () => {
+  gsap.fromTo(
+    ".section1__title",
+    {
+      x: "-100vw",
+    },
+    {
+      x: 0,
+      scrollTrigger: {
+        trigger: ".section1",
+        start: "top bottom",
+        end: "center center",
+        scrub: true,
+      },
+    }
+  );
+};
+
+const scrollRiseEffect = () => {
+  gsap.fromTo(
+    ".section3__word span",
+    {
+      x: 0,
+      y: 0,
+    },
+    {
+      x: 400,
+      y: -300,
+      stagger: 0.2,
+      scrollTrigger: {
+        trigger: ".section3",
+        start: "top center",
+        end: "center center",
+        scrub: true,
+      },
+    }
+  );
+};
+
+const scrollExclamationEffect = () => {
+  gsap.fromTo(
+    ".section4__exclamation",
+    {
+      scale: 0.3,
+    },
+    {
+      scale: 1,
+      scrollTrigger: {
+        trigger: "#section4",
+        start: "top center",
+        end: "center center",
+        scrub: true,
+      },
+    }
+  );
+};
+
+const scrollTextEffect = () => {
+  gsap.fromTo(
+    ".section5__text p:nth-of-type(1)",
+    {
+      opacity: 0,
+      x: -200,
+    },
+    {
+      opacity: 1,
+      x: 0,
+      scrollTrigger: {
+        trigger: ".section5",
+        start: "top center",
+        end: "center center",
+        scrub: true,
+      },
+    }
+  );
+
+  gsap.fromTo(
+    ".section5__text p:nth-of-type(2)",
+    {
+      opacity: 0,
+      x: 200,
+    },
+    {
+      opacity: 1,
+      x: 0,
+      scrollTrigger: {
+        trigger: ".section5",
+        start: "top center",
+        end: "center center",
+        scrub: true,
+      },
+    }
+  );
+};
+
+gsap.matchMedia({
+  "prefers-reduced-motion: reduce": () => {
+    console.log("Reduced motion is enabled. Animations will be disabled.");
+  },
+
+  "prefers-reduced-motion: no-preference": () => {
+    scrollSilent();
+    scrollTitleEffect();
+    scrollRiseEffect();
+    scrollExclamationEffect();
+    scrollTextEffect();
+  }
+});
+
 const init = () => {
   setActiveLink();
   setupVoiceDetection();
   setupDragAndDrop();
+
+  scrollSilent();
+  scrollTitleEffect();
+  scrollRiseEffect();
+  scrollExclamationEffect();
+  scrollTextEffect();
 }
 
 init();
