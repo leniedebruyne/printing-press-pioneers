@@ -24,12 +24,12 @@ const allLetters = document.querySelectorAll('.section2__pressletters img');
 const typeSound = new Audio('./public/type.mp3');
 
 
+// navigatie
 hamburger.addEventListener('click', () => {
   menu.classList.toggle('visible');
 });
 
-
-const setActiveLink = () => {
+const activeLink = () => {
   let currentSection = '';
 
   sections.forEach((section) => {
@@ -44,11 +44,12 @@ const setActiveLink = () => {
       link.classList.add('active');
     }
   });
-  window.addEventListener('scroll', setActiveLink);
+  window.addEventListener('scroll', activeLink);
 };
 
 
-const setupVoiceDetection = () => {
+// interactie roepen
+const voiceDetection = () => {
   navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
     const audioContext = new AudioContext();
     const source = audioContext.createMediaStreamSource(stream);
@@ -78,7 +79,8 @@ const setupVoiceDetection = () => {
 };
 
 
-const setupDragAndDrop = () => {
+// interactie afbeelding slepen
+const dragAndDrop = () => {
   // Maak afbeeldingen versleepbaar
   draggableItems.forEach((item) => {
     item.addEventListener('dragstart', (e) => {
@@ -121,7 +123,65 @@ const setupDragAndDrop = () => {
 };
 
 
-const checkSectionVisibility = () => {
+// interactie letter voor weetje
+const fact = (letter) => {
+  // verwijder alle vergrote afbeeldingen
+  allLetters.forEach(letter => letter.style.transform = 'scale(1)');
+
+  typeSound.play();
+
+  if (letter === 'p') {
+    factText.style.display = 'block';
+    factText.textContent = 'In the past, they could only print in black and red. Have you ever seen a book with other colors? Then it was hand-colored—how cool is that?';
+    document.querySelector('.section2__pressletters--p').style.transform = 'scale(1.2)';
+  }
+  if (letter === 'l') {
+    factText.style.display = 'block';
+    factText.textContent = 'They used to have to put their printing letters in mirror image? That\'s how the letter ended up being printed correctly.';
+    document.querySelector('.section2__pressletters--l').style.transform = 'scale(1.2)';
+  }
+  if (letter === 'a') {
+    factText.style.display = 'block';
+    factText.textContent = 'In the Plantin-Moretus museum, there’s a hidden “P” carved into the doorframe. It’s a symbol of the Plantin family and is believed to be a good luck charm.';
+    document.querySelector('.section2__pressletters--a').style.transform = 'scale(1.2)';
+  }
+  if (letter === 'n') {
+    factText.style.display = 'block';
+    factText.textContent = 'The logo of the Plantin-Moretus press featured a compass, symbolizing work, determination, and precision—reflecting the careful craftsmanship Plantin valued in his printing work.';
+    document.querySelector('.section2__pressletters--n').style.transform = 'scale(1.2)';
+  }
+  if (letter === 't') {
+    factText.style.display = 'block';
+    factText.textContent = 'Plantin’s press played a key role in the spread of the Protestant Reformation by printing pamphlets and books in multiple languages.';
+    document.querySelector('.section2__pressletters--t').style.transform = 'scale(1.2)';
+  }
+  if (letter === 'i') {
+    factText.style.display = 'block';
+    factText.textContent = 'Plantin’s press produced the famous "Biblia Polyglotta", a Bible printed in five languages to promote religious tolerance.';
+    document.querySelector('.section2__pressletters--i').style.transform = 'scale(1.2)';
+  }
+};
+
+document.addEventListener('keydown', (event) => {
+  const key = event.key.toLowerCase();
+  if (['p', 'l', 'a', 'n', 't', 'i'].includes(key)) {
+    fact(key);
+  }
+});
+
+if (window.matchMedia('(max-width: 90em)').matches) {
+  allLetters.forEach(letter => {
+    letter.addEventListener('click', () => {
+      const clickedLetter = letter.getAttribute('data-letter');
+      fact(clickedLetter);
+    });
+  });
+}
+
+
+
+// pop up messages
+const popUp = () => {
   const section2 = document.getElementById('section2');
   const rect2 = section2.getBoundingClientRect();
   const section2Middle = rect2.top + rect2.height / 2;
@@ -164,68 +224,12 @@ const checkSectionVisibility = () => {
   }
 };
 
-window.addEventListener('scroll', checkSectionVisibility);
-window.addEventListener('load', checkSectionVisibility);
+window.addEventListener('scroll', popUp);
+window.addEventListener('load', popUp);
 
 
 
-const setFactText = (letter) => {
-  // verwijder alle vergrote afbeeldingen
-  allLetters.forEach(letter => letter.style.transform = 'scale(1)');
-
-  typeSound.play();
-
-  if (letter === 'p') {
-    factText.style.display = 'block';
-    factText.textContent = 'In the past, they could only print in black and red. Have you ever seen a book with other colors? Then it was hand-colored—how cool is that?';
-    document.querySelector('.section2__pressletters--p').style.transform = 'scale(1.2)';
-  }
-  if (letter === 'l') {
-    factText.style.display = 'block';
-    factText.textContent = 'They used to have to put their printing letters in mirror image? That\'s how the letter ended up being printed correctly.';
-    document.querySelector('.section2__pressletters--l').style.transform = 'scale(1.2)';
-  }
-  if (letter === 'a') {
-    factText.style.display = 'block';
-    factText.textContent = 'In the Plantin-Moretus museum, there’s a hidden “P” carved into the doorframe. It’s a symbol of the Plantin family and is believed to be a good luck charm.';
-    document.querySelector('.section2__pressletters--a').style.transform = 'scale(1.2)';
-  }
-  if (letter === 'n') {
-    factText.style.display = 'block';
-    factText.textContent = 'The logo of the Plantin-Moretus press featured a compass, symbolizing work, determination, and precision—reflecting the careful craftsmanship Plantin valued in his printing work.';
-    document.querySelector('.section2__pressletters--n').style.transform = 'scale(1.2)';
-  }
-  if (letter === 't') {
-    factText.style.display = 'block';
-    factText.textContent = 'Plantin’s press played a key role in the spread of the Protestant Reformation by printing pamphlets and books in multiple languages.';
-    document.querySelector('.section2__pressletters--t').style.transform = 'scale(1.2)';
-  }
-  if (letter === 'i') {
-    factText.style.display = 'block';
-    factText.textContent = 'Plantin’s press produced the famous "Biblia Polyglotta", a Bible printed in five languages to promote religious tolerance.';
-    document.querySelector('.section2__pressletters--i').style.transform = 'scale(1.2)';
-  }
-};
-
-document.addEventListener('keydown', (event) => {
-  const key = event.key.toLowerCase();
-  if (['p', 'l', 'a', 'n', 't', 'i'].includes(key)) {
-    setFactText(key);
-  }
-});
-
-if (window.matchMedia('(max-width: 90em)').matches) {
-  allLetters.forEach(letter => {
-    letter.addEventListener('click', () => {
-      const clickedLetter = letter.getAttribute('data-letter');
-      setFactText(clickedLetter);
-    });
-  });
-}
-
-
-
-
+//gsap
 gsap.registerPlugin(ScrollTrigger);
 
 const scrollSilent = () => {
@@ -246,7 +250,7 @@ const scrollSilent = () => {
   );
 };
 
-const scrollTitleEffect = () => {
+const scrollTitle = () => {
   gsap.fromTo(
     ".section1__title",
     {
@@ -264,7 +268,7 @@ const scrollTitleEffect = () => {
   );
 };
 
-const scrollRiseEffect = () => {
+const scrollRise = () => {
   gsap.fromTo(
     ".section3__word span",
     {
@@ -285,7 +289,7 @@ const scrollRiseEffect = () => {
   );
 };
 
-const scrollExclamationEffect = () => {
+const scrollExclamation = () => {
   gsap.fromTo(
     ".section4__exclamation",
     {
@@ -303,7 +307,7 @@ const scrollExclamationEffect = () => {
   );
 };
 
-const scrollTextEffect = () => {
+const scrollText = () => {
   gsap.fromTo(
     ".section5__text p:nth-of-type(1)",
     {
@@ -348,23 +352,23 @@ gsap.matchMedia({
 
   "prefers-reduced-motion: no-preference": () => {
     scrollSilent();
-    scrollTitleEffect();
-    scrollRiseEffect();
-    scrollExclamationEffect();
-    scrollTextEffect();
+    scrollTitle();
+    scrollRise();
+    scrollExclamation();
+    scrollText();
   }
 });
 
 const init = () => {
-  setActiveLink();
-  setupVoiceDetection();
-  setupDragAndDrop();
+  activeLink();
+  voiceDetection();
+  dragAndDrop();
 
   scrollSilent();
-  scrollTitleEffect();
-  scrollRiseEffect();
-  scrollExclamationEffect();
-  scrollTextEffect();
+  scrollTitle();
+  scrollRise();
+  scrollExclamation();
+  scrollText();
 }
 
 init();

@@ -356,7 +356,9 @@
  .section4__title {
    display: flex;
    justify-content: center;
-   padding-top: 1.563rem;
+   padding-top: -1.563rem;
+   margin-bottom: -6rem;
+   margin-left: -10rem;
  }
 
  .section4__exclamation {
@@ -368,7 +370,7 @@
 
  .section4__text {
    margin-top: 9.375rem;
-   max-width: 20rem;
+   max-width: 21rem;
    font-weight: 600;
  }
 
@@ -946,7 +948,7 @@
    }
 
    .section4__text {
-     margin-top: 0.625rem;
+     margin-top: 7.625rem;
      margin-left: 0.625rem;
      min-width: 31.25rem;
      font-weight: 600;
