@@ -14,9 +14,9 @@ const draggableItems = document.querySelectorAll('.section8__perchament, .sectio
 const dropzones = document.querySelectorAll('.dropzone');
 let draggedItem = null;
 
-let hasAlertShownSection2 = false;
+/* let hasAlertShownSection2 = false;
 let hasAlertShownSection4 = false;
-let hasAlertShownSection8 = false;
+let hasAlertShownSection8 = false; */
 
 const factText = document.querySelector('.section2__fact--text');
 const allLetters = document.querySelectorAll('.section2__pressletters img');
@@ -50,6 +50,7 @@ const activeLink = () => {
 
 // interactie roepen
 const voiceDetection = () => {
+
   navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
     const audioContext = new AudioContext();
     const source = audioContext.createMediaStreamSource(stream);
@@ -62,11 +63,12 @@ const voiceDetection = () => {
     const dataArray = new Uint8Array(analyser.frequencyBinCount);
 
     const detectVolume = () => {
+
       analyser.getByteFrequencyData(dataArray);
       // tel alle waarden met elkaar op en bereken het gemiddelde
       const volume = dataArray.reduce((a, b) => a + b, 0) / dataArray.length;
 
-      if (volume > 75) {
+      if (volume > 50) {
         position += 10;
         image.style.transform = `translateX(${position}px)`;
       }
@@ -181,7 +183,7 @@ if (window.matchMedia('(max-width: 90em)').matches) {
 
 
 // pop up messages
-const popUp = () => {
+/* const popUp = () => {
   const section2 = document.getElementById('section2');
   const rect2 = section2.getBoundingClientRect();
   const section2Middle = rect2.top + rect2.height / 2;
@@ -225,7 +227,7 @@ const popUp = () => {
 };
 
 window.addEventListener('scroll', popUp);
-window.addEventListener('load', popUp);
+window.addEventListener('load', popUp); */
 
 
 
@@ -266,6 +268,18 @@ const scrollTitle = () => {
       },
     }
   );
+};
+
+const scrollLetters = () => {
+  gsap.to([".default:nth-child(5)", ".blue-stroke:nth-child(6)", ".default:nth-child(7)"], {
+    x: -150,
+    scrollTrigger: {
+      trigger: ".section1",
+      start: "top center",
+      end: "center center",
+      scrub: true,
+    },
+  });
 };
 
 const scrollRise = () => {
@@ -345,7 +359,7 @@ const scrollText = () => {
   );
 };
 
-gsap.matchMedia({
+/* gsap.matchMedia({
   "prefers-reduced-motion: reduce": () => {
     console.log("Reduced motion is enabled. Animations will be disabled.");
   },
@@ -357,7 +371,7 @@ gsap.matchMedia({
     scrollExclamation();
     scrollText();
   }
-});
+}); */
 
 const init = () => {
   activeLink();
@@ -366,6 +380,7 @@ const init = () => {
 
   scrollSilent();
   scrollTitle();
+  scrollLetters();
   scrollRise();
   scrollExclamation();
   scrollText();
