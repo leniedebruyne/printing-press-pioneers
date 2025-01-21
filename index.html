@@ -333,8 +333,14 @@
 
         <div class="section6__card2">
           <div class="section6__container">
-            <img src="./public/png/virtus.png" alt="picture collection item" width="308" height="390"
-              class="section6__card">
+
+            <picture>
+              <source srcset="./public/avif/virtus_170.avif 170w,
+                  ./public/avif/virtus_414.avif 414w" sizes="(max-width: 414px) 100vw, 414px">
+              <img src="./public/png/virtus.png" alt="picture collection item" width="308" height="390"
+                class="section6__card">
+            </picture>
+
             <div class="section6__overlay">
               <h3>Virtus</h3>
               <p>1876-04-20</p>
