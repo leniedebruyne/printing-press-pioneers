@@ -47,7 +47,13 @@
 
   <header>
     <div class="header__content">
-      <img src="./public/png/logo.png" alt="logo" width="107" height="101" class="header__logo">
+
+      <picture>
+        <source srcset="./public/avif/logo_50.png 50w,
+                        ./public/avif/logo_189.png 189w" sizes="(max-width: 189px) 100vw, 189px">
+        <img src="./public/png/logo.png" alt="logo" class="header__logo" width="107" height="101">
+      </picture>
+
       <div class="header__text">
         <h1 class="header__title">the man who could not be</h1>
         <p class="header__word">silent</p>
