@@ -413,8 +413,14 @@
 
     <section class="section7">
       <p class="section7__quote--left">"</p>
-      <img src="./public/png/crown.png" alt="picture collection item" width="212" height="151"
-        class="viually-hidden crown">
+
+      <picture>
+        <source srcset="./public/avif/crown_150.avif 150w,
+                  ./public/avif/crown_212.avif 212w" sizes="(max-width: 212px) 100vw, 212px">
+        <img src="./public/png/crown.png" alt="picture collection item" width="212" height="151"
+          class="viually-hidden crown">
+      </picture>
+
       <div class="section7__bodycopy">
         <h2 class="section7__title">Arch-printer to the king of Spain</h2>
         <p class="section7__text">The largest printing business of the age brought its printer an honorary title in
