@@ -698,28 +698,20 @@
    color: var(--c-pink);
  }
 
- .footer__more,
- .footer__stories {
+ .footer__plantin,
+ .footer__moretus {
    font-size: var(--step-4);
  }
 
- .footer__qustion {
-   font-size: 4.688rem;
-   margin-left: -1.25rem;
- }
-
- .footer__stories {
+ .footer__moretus {
    margin-top: 4.688rem;
    margin-left: -4.688rem;
  }
 
- .footer__more {
+ .footer__plantin {
    margin-left: 2.5rem;
  }
 
- .footer__active {
-   color: var(--c-pink);
- }
 
  .footer__container {
    display: flex;
@@ -727,18 +719,18 @@
  }
 
  @media screen and (min-width: 51.25em) {
-  .section3__word{
-    margin-top: 10rem;
-    margin-right: 20rem;
-  }
+   .section3__word {
+     margin-top: 10rem;
+     margin-right: 20rem;
+   }
 
-  .section4{
-    padding-left: 5rem;
-  }
+   .section4 {
+     padding-left: 5rem;
+   }
 
-  .section4__title{
-    margin-left: -30rem;
-  }
+   .section4__title {
+     margin-left: -30rem;
+   }
  }
 
 
@@ -1305,57 +1297,64 @@
    }
 
    footer {
-     display: grid;
-     grid-template-columns: 1fr 1fr;
-     grid-template-rows: auto auto auto;
-     grid-gap: 1.25rem;
-     align-items: start;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     padding: 2rem;
+     background-color: var(--c-black);
+     color: var(--c-white);
    }
 
    .footer__title {
-     grid-column: 1 / 2;
-     grid-row: 1 / 2;
+     display: flex;
+     align-items: center;
+     gap: 1rem;
+     color: var(--c-pink);
+     text-align: center;
    }
 
-   .footer__persons {
-     grid-column: 2 / 3;
-     grid-row: 1 / 2;
+   .footer__plantin,
+   .footer__moretus {
+     font-size: 6rem;
    }
 
-   .footer__text {
-     grid-column: 2 / 3;
-     grid-row: 2 / 3;
+   .footer__plantin{
+    margin-top: -3rem;
+   }
+
+   .footer__moretus{
+    margin-bottom: 3rem;
+    margin-left: -15rem;
+   }
+
+   .footer__contact {
+     margin-bottom: 1rem;
    }
 
    .footer__container {
-     grid-column: 2 / 3;
-     grid-row: 3 / 4;
-     align-self: start;
-     margin-top: -1.25rem;
+     margin-top: 1rem;
+     display: flex;
+     flex-direction: column;
+     align-items: flex-start;
    }
 
-   .footer__more {
-     font-size: 6.25rem;
-     margin-top: 9.375rem;
-   }
-
-   .footer__info {
-     grid-column: 2 / 3;
-     grid-row: 1 / 3;
-     align-self: center;
-   }
-
-   .footer__stories {
-     font-size: 6.25rem;
-     margin-top: 14.375rem;
-   }
-
-   .footer__qustion {
-     font-size: 12.5rem;
+   .footer__container a button {
+     margin-bottom: 0.5rem;
    }
 
    .footer__text {
-     max-width: 31.25rem;
+     max-width: 50rem;
+   }
+
+   .footer__container {
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     gap: 1rem;
+   }
+
+   .footer__mail{
+    color: var(--c-pink);
    }
 
  }
@@ -1366,8 +1365,8 @@
      margin: 0 auto;
    }
 
-   .section1{
-    margin-top: -5rem;
+   .section1 {
+     margin-top: -5rem;
    }
 
    .section3 {
@@ -1387,16 +1386,18 @@
      margin-right: 0;
    }
 
-   .section4__container, .section4__plantin, .section4__action {
-    position: absolute;
-    margin-left: 45vw;
+   .section4__container,
+   .section4__plantin,
+   .section4__action {
+     position: absolute;
+     margin-left: 45vw;
    }
 
-   .section4__action{
-    min-width: 20rem;
+   .section4__action {
+     min-width: 20rem;
    }
 
-   .section4__plantin{
-    margin-left: 46vw;
+   .section4__plantin {
+     margin-left: 46vw;
    }
  }
