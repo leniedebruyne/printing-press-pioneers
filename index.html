@@ -53,7 +53,13 @@
         <p class="header__word">silent</p>
       </div>
     </div>
-    <img src="./public/png/plantin.png" alt="header image" width="258" height="330" class="header__image">
+
+    <picture>
+      <source srcset="./public/avif/plantin_140.avif 140w, 
+                      ./public/avif/plantin_459.avif 459w" sizes="(max-width: 459px) 100vw, 459px">
+      <img src="./public/png/plantin.png" alt="header image" class="header__image" width="258" height="330">
+    </picture>
+
     <button type="button" class="header__button">discover the story of Christoffel Plantin</button>
     <p class="header__intro">Discover the fascinating <br class="header__break"> story of Christoffel Plantin <br
         class="header__break">and his remarkable legacy.
