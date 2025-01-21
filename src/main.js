@@ -10,7 +10,7 @@ const links = document.querySelectorAll('.nav__list a');
 const image = document.querySelector('.section4__plantin');
 let position = 0;
 
-const draggableItems = document.querySelectorAll('.section8__perchament, .section8__painting');
+const draggableItems = document.querySelectorAll('.section9__perchament, .section9__painting');
 const dropzones = document.querySelectorAll('.dropzone');
 let draggedItem = null;
 

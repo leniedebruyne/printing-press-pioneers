@@ -238,7 +238,8 @@
  .section5,
  .section6,
  .section7,
- .section8 {
+ .section8,
+ .section9 {
    padding-bottom: 3.125rem;
  }
 
@@ -563,21 +564,63 @@
    padding: 0.188rem;
  }
 
- .section8__highlight {
-   color: var(--c-pink);
+ .section8 {
+   padding-bottom: 8rem;
+   background: linear-gradient(to bottom, transparent 200px, var(--c-pink) 200px);
+ }
+
+ .section8__cards::-webkit-scrollbar {
+   display: none;
  }
 
  .section8__title {
+   text-align: center;
+   font-size: var(--step-4);
+ }
+
+ .section8 h3 {
+   font-family: var(--font-bodycopy);
+   min-width: 20rem;
+ }
+
+ .section8__cards {
+   display: flex;
+   gap: 20px;
+   overflow-x: auto;
+   scroll-behavior: smooth;
+   scrollbar-width: none;
+ }
+
+ .section8__cards>div {
+   flex: 0 0 calc(50% - 20px);
+   max-width: calc(50% - 20px);
+   opacity: 0.6;
+ }
+
+ .section8__cards .active {
+   opacity: 1;
+ }
+
+ .section8 img {
+   width: 100%;
+   height: auto;
+ }
+
+ .section9__highlight {
+   color: var(--c-pink);
+ }
+
+ .section9__title {
    max-width: 18.75rem;
  }
 
- .section8 {
+ .section9 {
    display: flex;
    flex-direction: column;
    align-items: center;
  }
 
- .section8__find {
+ .section9__find {
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -590,7 +633,7 @@
    margin-bottom: 0.938rem;
  }
 
- .section8__room {
+ .section9__room {
    width: 100%;
    height: auto;
  }
@@ -1121,11 +1164,27 @@
      font-size: 15.625rem;
    }
 
-   .section8__title {
+
+   .section8__cards {
+     gap: 100px;
+   }
+
+   .section8__cards>div {
+     flex: 0 0 calc(33.33% - 100px);
+     max-width: calc(33.33% - 100px);
+     opacity: 0.6;
+   }
+
+
+   .section9 {
+     padding-top: 5rem;
+   }
+
+   .section9__title {
      min-width: 48.438rem;
    }
 
-   .section8__find {
+   .section9__find {
      min-width: 55rem;
      display: flex;
      flex-direction: row;
@@ -1136,14 +1195,14 @@
      background-color: var(--c-white);
    }
 
-   .section8__room {
+   .section9__room {
      width: 100%;
      height: auto;
      margin-top: -3.125rem;
      z-index: 0;
    }
 
-   .section8__perchament {
+   .section9__perchament {
      width: 10.938rem;
      height: 13.813rem;
      position: absolute;
@@ -1152,7 +1211,7 @@
      transform: rotate(20deg);
    }
 
-   .section8__painting {
+   .section9__painting {
      width: 7.625rem;
      height: 11.625rem;
      position: absolute;
@@ -1172,8 +1231,8 @@
      /* Highlight de dropzone wanneer iets eroverheen wordt gesleept */
    }
 
-   .section8__perchament,
-   .section8__painting {
+   .section9__perchament,
+   .section9__painting {
      cursor: grab;
      /* Geef aan dat ze versleepbaar zijn */
    }
