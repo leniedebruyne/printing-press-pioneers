@@ -540,8 +540,15 @@
           draggable="true">
       </picture>
 
-      <img src="./public/png/painting.png" alt="painting" width="43" height="62" class="section9__painting"
-        draggable="true">
+      <picture>
+        <source srcset="
+    ./public/avif/painting_43.png 43w,
+    ./public/avif/painting_114.png 114w,
+    ./public/avif/painting_141.png 141w" sizes="(max-width: 141px) 100vw, 141px">
+        <img src="./public/png/painting.png" alt="painting" width="43" height="62" class="section9__painting"
+          draggable="true">
+      </picture>
+
     </section>
 
     <footer>
