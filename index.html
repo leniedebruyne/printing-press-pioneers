@@ -224,13 +224,26 @@
         </p>
       </div>
       <div class="section4__escape">
-        <img src="./public/png/plantin.png" alt="plantin" width="100" height="128" class="section4__plantin">
+
+            <picture>
+              <source srcset="./public/avif/plantin_140.avif 140w, 
+                                  ./public/avif/plantin_459.avif 459w" sizes="(max-width: 459px) 100vw, 459px">
+              <img src="./public/png/plantin.png" alt="header image" class="section4__plantin" width="258" height="330">
+            </picture>
+
         <div class="section4__container">
           <div class="section4__rectangle"></div>
         </div>
         <p class="section4__action">help him escape</p>
       </div>
-      <img src="./public/png/door.png" alt="door" class="viually-hidden door" width="301" height="814">
+
+      <picture>
+        <source srcset="./public/avif/door_170.png 170w, 
+                        ./public/avif/door_239.png 239w, 
+                        ./public/avif/door_299.png 299w" sizes="(max-width: 299px) 100vw, 299px">
+        <img src="./public/png/door.png" alt="door" class="viually-hidden door" width="301" height="814">
+      </picture>
+
     </section>
 
     <section class="section5">
