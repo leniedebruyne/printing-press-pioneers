@@ -532,9 +532,14 @@
         <img src="./public/png/room.png" alt="plantin's room" width="390" height="229" class="section9__room">
       </picture>
 
-      <img src="./public/png/perchament.png" alt="parchment" width="70" height="70" class="section9__perchament"
-        draggable="true">
-        
+      <picture>
+        <source srcset="
+    ./public/avif/perchament_30.avif 30w,
+    ./public/avif/perchament_230.avif 230w" sizes="(max-width: 230px) 100vw, 230px">
+        <img src="./public/png/perchament.png" alt="parchment" width="70" height="70" class="section9__perchament"
+          draggable="true">
+      </picture>
+
       <img src="./public/png/painting.png" alt="painting" width="43" height="62" class="section9__painting"
         draggable="true">
     </section>
