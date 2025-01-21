@@ -23,6 +23,12 @@
 </head>
 
 <body>
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <p id="popup-message"></p>
+      <button id="close-popup">Close</button>
+    </div>
+  </div>
 
   <nav class="nav">
     <div class="nav__menu">
@@ -43,11 +49,12 @@
       </ul>
     </div>
 
-    <picture>
-      <source srcset="./public/avif/hamburger.avif 30w" sizes="(max-width: 30px) 100vw, 30px">
-      <img class="nav__hamburger" src="./public/png/hamburger.png" alt="hamburger icon" width="30" height="29">
-    </picture>
-
+    <div class="nav__hamburger-container">
+      <picture>
+        <source srcset="./public/avif/hamburger.avif 30w" sizes="(max-width: 30px) 100vw, 30px">
+        <img class="nav__hamburger" src="./public/png/hamburger.png" alt="hamburger icon" width="30" height="29">
+      </picture>
+    </div>
   </nav>
 
   <header>
@@ -78,7 +85,7 @@
 
   <main>
 
-    <section class="section1">
+    <section id="printer" class="section1">
       <h2 class="section1__title">Plantin establishes a business as a</h2>
       <p class="section1__word">
         <span class="default">P</span>
@@ -100,7 +107,7 @@
       <div class="rectangle"></div>
     </section>
 
-    <section class="section2" id="section2">
+    <section id="hersey" class="section2">
       <h2 class="section2__title">Plantin suspected of</h2>
       <p class="section2__word">hersey</p>
       <p class="section2__text">The second half of the 16th century was no easy time for writers and their
@@ -191,7 +198,7 @@
 
     </section>
 
-    <section class="section3">
+    <section id="rise" class="section3">
       <div class="section3__word-and-title">
         <p class="section3__word">
           <span class="section3__r">r</span>
@@ -211,7 +218,7 @@
       <p class="section3__year">1563</p>
     </section>
 
-    <section class="section4" id="section4">
+    <section id="danger" class="section4">
       <p class="section4__exclamation">!</p>
       <div>
         <h2 class="section4__title">Back in danger</h2>
@@ -228,7 +235,7 @@
         <picture>
           <source srcset="./public/avif/plantin_140.avif 140w, 
                                   ./public/avif/plantin_459.avif 459w" sizes="(min-width: 1440px) 153px, 258px">
-          <img src="./public/png/plantin.png" alt="header image" class="section4__plantin" width="258" height="330">
+          <img src="./public/png/plantin.png" alt="plantin" class="section4__plantin" width="258" height="330">
         </picture>
 
         <div class="section4__container">
@@ -246,7 +253,7 @@
 
     </section>
 
-    <section class="section5">
+    <section id="bible" class="section5">
       <div class="section5__image-container">
 
         <picture>
@@ -288,7 +295,7 @@
       </div>
     </section>
 
-    <section class="section6">
+    <section id="explore" class="section6">
       <div class="section6__title">
         <h2 class="section6__word">explore</h2>
         <p class="section6__collection">the collection</p>
@@ -411,7 +418,7 @@
       </div>
     </section>
 
-    <section class="section7">
+    <section id="arch-printer" class="section7">
       <p class="section7__quote--left">"</p>
 
       <picture>
@@ -447,7 +454,8 @@
 
           <picture>
             <source srcset="./public/avif/christoffel-Plantin_150.avif 150w,
-                            ./public/avif/christoffel-Plantin_414.avif 414w" sizes="(min-width: 1440px) calc(33.33vw - 100px), calc(50vw - 20px)">
+                            ./public/avif/christoffel-Plantin_414.avif 414w"
+              sizes="(min-width: 1440px) calc(33.33vw - 100px), calc(50vw - 20px)">
             <img src="./public/png/christoffel-Plantin.png" alt="Christoffel Plantin" width="308" height="390">
           </picture>
 
@@ -458,7 +466,8 @@
 
           <picture>
             <source srcset="./public/avif/jan-moretus_150.avif 150w,
-                            ./public/avif/jan-moretus_414.avif 414w" sizes="(min-width: 1440px) calc(33.33vw - 100px), calc(50vw - 20px)">
+                            ./public/avif/jan-moretus_414.avif 414w"
+              sizes="(min-width: 1440px) calc(33.33vw - 100px), calc(50vw - 20px)">
             <img src="./public/png/jan-moretus.png" alt="Jan Moretus" width="308" height="390">
           </picture>
 
@@ -469,7 +478,8 @@
 
           <picture>
             <source srcset="./public/avif/balthasar-moretus_150.avif 150w,
-                            ./public/avif/balthasar-moretus_414.avif 414w" sizes="(min-width: 1440px) calc(33.33vw - 100px), calc(50vw - 20px)">
+                            ./public/avif/balthasar-moretus_414.avif 414w"
+              sizes="(min-width: 1440px) calc(33.33vw - 100px), calc(50vw - 20px)">
             <img src="./public/png/balthasar-moretus.png" alt="Balthasar Moretus" width="308" height="390">
           </picture>
 
@@ -480,7 +490,8 @@
 
           <picture>
             <source srcset="./public/avif/edward-moretus_150.avif 150w,
-                            ./public/avif/edward-moretus_414.avif 414w" sizes="(min-width: 1440px) calc(33.33vw - 100px), calc(50vw - 20px)">
+                            ./public/avif/edward-moretus_414.avif 414w"
+              sizes="(min-width: 1440px) calc(33.33vw - 100px), calc(50vw - 20px)">
             <img src="./public/png/edward-moretus.png" alt="Edward Moretus" width="308" height="390">
           </picture>
 
@@ -491,7 +502,8 @@
 
           <picture>
             <source srcset="./public/avif/peter-paul-rubens_150.avif 150w,
-                            ./public/avif/peter-paul-rubens_414.avif 414w" sizes="(min-width: 1440px) calc(33.33vw - 100px), calc(50vw - 20px)">
+                            ./public/avif/peter-paul-rubens_414.avif 414w"
+              sizes="(min-width: 1440px) calc(33.33vw - 100px), calc(50vw - 20px)">
             <img src="./public/png/peter-paul-rubens.png" alt="Peter Paul Rubens" width="308" height="390">
           </picture>
 

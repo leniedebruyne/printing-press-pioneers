@@ -14,9 +14,9 @@ const draggableItems = document.querySelectorAll('.section9__perchament, .sectio
 const dropzones = document.querySelectorAll('.dropzone');
 let draggedItem = null;
 
-/* let hasAlertShownSection2 = false;
-let hasAlertShownSection4 = false;
-let hasAlertShownSection8 = false; */
+let hasPopUpShownSection2 = false;
+let hasPopUpShownSection4 = false;
+let hasPopUpShownSection9 = false;
 
 const factText = document.querySelector('.section2__fact--text');
 const allLetters = document.querySelectorAll('.section2__pressletters img');
@@ -29,64 +29,89 @@ hamburger.addEventListener('click', () => {
   menu.classList.toggle('visible');
 });
 
+// progress
 const activeLink = () => {
   let currentSection = '';
 
   sections.forEach((section) => {
     const rect = section.getBoundingClientRect();
-    if (rect.top <= 0 && rect.bottom >= 0) {
+    if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
       currentSection = section.getAttribute('id');
     }
   });
+
   links.forEach((link) => {
     link.classList.remove('active');
+    // substring : # verwijderen en naam krijgen van de sectie
     if (link.getAttribute('href').substring(1) === currentSection) {
       link.classList.add('active');
     }
   });
-  window.addEventListener('scroll', activeLink);
 };
+
+window.addEventListener('scroll', activeLink);
+
+
+// scroll naar de juiste sectie
+links.forEach((link) => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const targetId = link.getAttribute('href').substring(1); // haal de id van de sectie op
+    const targetSection = document.getElementById(targetId);
+
+    if (targetSection) {
+      targetSection.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
+  });
+});
 
 
 // interactie roepen
-const voiceDetection = () => {
+const voiceDetection = async () => {
+  // mag ik geluid gebruiken?
+  const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
 
-  navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
-    const audioContext = new AudioContext();
-    const source = audioContext.createMediaStreamSource(stream);
+  // maak een nieuwe AudioContext aan
+  const audioContext = new AudioContext();
+  const source = audioContext.createMediaStreamSource(stream);
 
-    const analyser = audioContext.createAnalyser();
-    analyser.fftSize = 256;
-    source.connect(analyser);
+  // analyser node maken die geluid nivea kan opnemen
+  const analyser = audioContext.createAnalyser();
+  analyser.fftSize = 256;
+  source.connect(analyser);
 
-    // maakt array die groot genoeg is voor de gemeten getallen op te slaan, deze word dan gevuld met data van analysernode
-    const dataArray = new Uint8Array(analyser.frequencyBinCount);
+  // array om data op te slaan, Uint8array = tussen 0 en 255
+  const dataArray = new Uint8Array(analyser.frequencyBinCount);
 
-    const detectVolume = () => {
+  const detectVolume = () => {
+    analyser.getByteFrequencyData(dataArray);
 
-      analyser.getByteFrequencyData(dataArray);
-      // tel alle waarden met elkaar op en bereken het gemiddelde
-      const volume = dataArray.reduce((a, b) => a + b, 0) / dataArray.length;
+    // bereken gemiddelde van het volume
+    const volume = dataArray.reduce((a, b) => a + b, 0) / dataArray.length;
 
-      if (volume > 50) {
-        position += 10;
-        image.style.transform = `translateX(${position}px)`;
-      }
+    // als het luid genoeg is -> beweeg afbeelding
+    if (volume > 50) {
+      position += 10;
+      image.style.transform = `translateX(${position}px)`;
+    }
+    requestAnimationFrame(detectVolume);
+  };
 
-      requestAnimationFrame(detectVolume);
-    };
-
-    detectVolume();
-  })
+  detectVolume();
 };
 
 
 // interactie afbeelding slepen
 const dragAndDrop = () => {
-  // Maak afbeeldingen versleepbaar
+  // maak afbeeldingen versleepbaar
   draggableItems.forEach((item) => {
     item.addEventListener('dragstart', (e) => {
+      // stel dragged item in op afbeelding die word gesleept
       draggedItem = e.target;
+      // informatie naar dropbox overdragen
       e.dataTransfer.setData('text/plain', e.target.className);
     });
 
@@ -110,7 +135,7 @@ const dragAndDrop = () => {
       e.preventDefault();
       zone.classList.remove('over');
 
-      // Controleer of het juiste item is gedropt
+      // controleer of het juiste item is gedropt
       const itemType = draggedItem.alt.toLowerCase();
       const zoneType = zone.dataset.item;
 
@@ -182,52 +207,72 @@ if (window.matchMedia('(max-width: 90em)').matches) {
 
 
 
-// pop up messages
-/* const popUp = () => {
-  const section2 = document.getElementById('section2');
-  const rect2 = section2.getBoundingClientRect();
-  const section2Middle = rect2.top + rect2.height / 2;
+const showPopUp = (message) => {
+  const popup = document.getElementById('popup');
+  const popupMessage = document.getElementById('popup-message');
+  popupMessage.textContent = message;
+  popup.style.display = 'flex'; // toon de pop-up
 
-  // Als de pop-up voor section 2 al is getoond, doe dan verder niets
-  if (hasAlertShownSection2) return;
+  // sluit de pop-up als de gebruiker op de sluit knop drukt
+  document.getElementById('close-popup').addEventListener('click', () => {
+    popup.style.display = 'none';
+  });
+};
 
-  //  toon als section 2 in het midden is
-  if (section2Middle >= 0 && section2Middle <= window.innerHeight) {
-    alert("Guess which letter it is and type it on your keyboard or press it on your phone. Then you will see a factoid.");
-    hasAlertShownSection2 = true; //pop up maar 1 keer tonen
+const popUp = () => {
+  // pop up voor sectie 2
+  const section2 = document.querySelector('.section2');
+  if (section2) {
+    const rect2 = section2.getBoundingClientRect();
+    const section2Middle = rect2.top + rect2.height / 2;
+
+    // reset de pop up als deze sectie uit beeld is
+    if (section2Middle > window.innerHeight || section2Middle < 0) {
+      hasPopUpShownSection2 = false;
+    }
+
+    // toon pop up als deze sectie in beeld komt en nog niet getoond is
+    if (!hasPopUpShownSection2 && section2Middle >= 0 && section2Middle <= window.innerHeight) {
+      showPopUp("Guess which letter it is and type it on your keyboard or press it on your phone. Then you will see a factoid.");
+      hasPopUpShownSection2 = true;
+    }
   }
 
+  // pop up sectie 4
+  const section4 = document.querySelector('.section4');
+  if (section4) {
+    const rect4 = section4.getBoundingClientRect();
+    const section4Middle = rect4.top + rect4.height / 2;
 
-  const section4 = document.getElementById('section4');
-  const rect4 = section4.getBoundingClientRect();
-  const section4Middle = rect4.top + rect4.height / 2;
+    if (section4Middle > window.innerHeight || section4Middle < 0) {
+      hasPopUpShownSection4 = false;
+    }
 
-  // Als de pop-up voor section 4 al is getoond, doe dan verder niets
-  if (hasAlertShownSection4) return;
-
-  // toon als section 4 in het midden is
-  if (section4Middle >= 0 && section4Middle <= window.innerHeight) {
-    alert("Make yourself heard just as Plantin did, shout as loudly as you can to help him escape!");
-    hasAlertShownSection4 = true; //pop up maar 1 keer tonen
+    if (!hasPopUpShownSection4 && section4Middle >= 0 && section4Middle <= window.innerHeight) {
+      showPopUp("Make yourself heard just as Plantin did, shout as loudly as you can to help him escape!");
+      hasPopUpShownSection4 = true;
+    }
   }
 
+  // pop up sectie 9
+  const section9 = document.querySelector('.section9');
+  if (section9) {
+    const rect9 = section9.getBoundingClientRect();
+    const section9Middle = rect9.top + rect9.height / 2;
 
-  const section8 = document.getElementById('section8');
-  const rect8 = section8.getBoundingClientRect();
-  const section8Middle = rect8.top + rect8.height / 2;
+    if (section9Middle > window.innerHeight || section9Middle < 0) {
+      hasPopUpShownSection9 = false;
+    }
 
-  // Als de pop-up voor section 8 al is getoond, doe dan verder niets
-  if (hasAlertShownSection8) return;
-
-  // toon als section 8 in het midden is
-  if (section8Middle >= 0 && section8Middle <= window.innerHeight) {
-    alert("Find the images that describe the word and drag it to the correct word.");
-    hasAlertShownSection8 = true; //pop up maar 1 keer tonen
+    if (!hasPopUpShownSection9 && section9Middle >= 0 && section9Middle <= window.innerHeight) {
+      showPopUp("Find the images that describe the word and drag it to the correct word.");
+      hasPopUpShownSection9 = true;
+    }
   }
 };
 
 window.addEventListener('scroll', popUp);
-window.addEventListener('load', popUp); */
+window.addEventListener('load', popUp);
 
 
 
@@ -312,7 +357,7 @@ const scrollExclamation = () => {
     {
       scale: 1,
       scrollTrigger: {
-        trigger: "#section4",
+        trigger: ".section4",
         start: "top center",
         end: "center center",
         scrub: true,
