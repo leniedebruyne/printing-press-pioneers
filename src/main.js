@@ -316,15 +316,20 @@ const scrollTitle = () => {
 };
 
 const scrollLetters = () => {
-  gsap.to([".default:nth-child(5)", ".blue-stroke:nth-child(6)", ".default:nth-child(7)"], {
-    x: -150,
-    scrollTrigger: {
-      trigger: ".section1",
-      start: "top center",
-      end: "center center",
-      scrub: true,
-    },
-  });
+  if (window.innerWidth >= 90 * 16) { // 1 em = 16 pixels
+    gsap.to(
+      [".default:nth-child(5)", ".blue-stroke:nth-child(6)", ".default:nth-child(7)"],
+      {
+        x: -150,
+        scrollTrigger: {
+          trigger: ".section1",
+          start: "top center",
+          end: "center center",
+          scrub: true,
+        },
+      }
+    );
+  }
 };
 
 const scrollRise = () => {
@@ -336,7 +341,13 @@ const scrollRise = () => {
     },
     {
       x: 400,
-      y: -300,
+      y: () => {
+        if (window.matchMedia("(min-width: 112.5em)").matches) {
+          return -600;
+        } else {
+          return -300;
+        }
+      },
       stagger: 0.2,
       scrollTrigger: {
         trigger: ".section3",
@@ -404,35 +415,27 @@ const scrollText = () => {
   );
 };
 
-/* gsap.matchMedia({
-  "prefers-reduced-motion: reduce": () => {
-    console.log("Reduced motion is enabled. Animations will be disabled.");
-  },
 
-  "prefers-reduced-motion: no-preference": () => {
+
+const init = () => {
+  const prefersReduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (!prefersReduceMotion) {
     scrollSilent();
     scrollTitle();
+    scrollLetters();
     scrollRise();
     scrollExclamation();
     scrollText();
   }
-}); */
 
-const init = () => {
   activeLink();
   voiceDetection();
   dragAndDrop();
-
-  scrollSilent();
-  scrollTitle();
-  scrollLetters();
-  scrollRise();
-  scrollExclamation();
-  scrollText();
-}
+};
 
 init();
 
-// popup: https://www.w3schools.com/js/js_popup.asp
+// popup: https://codepen.io/Asadabbas/pen/pLMNGZ
 // dropzone: https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API/File_drag_and_drop
 // roepen: https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Visualizations_with_Web_Audio_API
