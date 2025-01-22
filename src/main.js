@@ -22,6 +22,9 @@ const factText = document.querySelector('.section2__fact--text');
 const allLetters = document.querySelectorAll('.section2__pressletters img');
 
 const typeSound = new Audio('./public/type.mp3');
+const yahooSound = new Audio('./public/yahoo.mp3');
+let soundPlayed = false;
+
 
 
 // navigatie
@@ -48,9 +51,7 @@ const activeLink = () => {
     }
   });
 };
-
 window.addEventListener('scroll', activeLink);
-
 
 // scroll naar de juiste sectie
 links.forEach((link) => {
@@ -69,6 +70,7 @@ links.forEach((link) => {
 });
 
 
+
 // interactie roepen
 const voiceDetection = async () => {
   // mag ik geluid gebruiken?
@@ -78,12 +80,12 @@ const voiceDetection = async () => {
   const audioContext = new AudioContext();
   const source = audioContext.createMediaStreamSource(stream);
 
-  // analyser node maken die geluid nivea kan opnemen
+  // analyser node maken die geluidsniveaus kan opnemen
   const analyser = audioContext.createAnalyser();
   analyser.fftSize = 256;
   source.connect(analyser);
 
-  // array om data op te slaan, Uint8array = tussen 0 en 255
+  // array om data op te slaan, Uint8Array = tussen 0 en 255
   const dataArray = new Uint8Array(analyser.frequencyBinCount);
 
   const detectVolume = () => {
@@ -96,12 +98,20 @@ const voiceDetection = async () => {
     if (volume > 50) {
       position += 10;
       image.style.transform = `translateX(${position}px)`;
+
+      // is plantin buiten het scherm?
+      const imageRect = image.getBoundingClientRect();
+      if (!soundPlayed && (imageRect.right < 0 || imageRect.left > window.innerWidth)) {
+        yahooSound.play();
+        soundPlayed = true;
+      }
     }
     requestAnimationFrame(detectVolume);
   };
 
   detectVolume();
 };
+
 
 
 // interactie afbeelding slepen
@@ -148,6 +158,7 @@ const dragAndDrop = () => {
     });
   });
 };
+
 
 
 // interactie letter voor weetje
@@ -211,60 +222,47 @@ const showPopUp = (message) => {
   const popup = document.getElementById('popup');
   const popupMessage = document.getElementById('popup-message');
   popupMessage.textContent = message;
-  popup.style.display = 'flex'; // toon de pop-up
+  popup.style.display = 'flex'; // Toon de pop-up
 
-  // sluit de pop-up als de gebruiker op de sluit knop drukt
+  // okey = sluiten
   document.getElementById('close-popup').addEventListener('click', () => {
     popup.style.display = 'none';
   });
 };
 
 const popUp = () => {
-  // pop up voor sectie 2
+  // pop up section 2
   const section2 = document.querySelector('.section2');
-  if (section2) {
+  if (section2 && !hasPopUpShownSection2) {
     const rect2 = section2.getBoundingClientRect();
     const section2Middle = rect2.top + rect2.height / 2;
 
-    // reset de pop up als deze sectie uit beeld is
-    if (section2Middle > window.innerHeight || section2Middle < 0) {
-      hasPopUpShownSection2 = false;
-    }
-
-    // toon pop up als deze sectie in beeld komt en nog niet getoond is
-    if (!hasPopUpShownSection2 && section2Middle >= 0 && section2Middle <= window.innerHeight) {
+    // toon de pop up als deze sectie in beeld komt en nog niet getoond is
+    if (section2Middle >= 0 && section2Middle <= window.innerHeight) {
       showPopUp("Guess which letter it is and type it on your keyboard or press it on your phone. Then you will see a factoid.");
       hasPopUpShownSection2 = true;
     }
   }
 
-  // pop up sectie 4
+  // pop up section 4
   const section4 = document.querySelector('.section4');
-  if (section4) {
+  if (section4 && !hasPopUpShownSection4) {
     const rect4 = section4.getBoundingClientRect();
     const section4Middle = rect4.top + rect4.height / 2;
 
-    if (section4Middle > window.innerHeight || section4Middle < 0) {
-      hasPopUpShownSection4 = false;
-    }
-
-    if (!hasPopUpShownSection4 && section4Middle >= 0 && section4Middle <= window.innerHeight) {
+    if (section4Middle >= 0 && section4Middle <= window.innerHeight) {
       showPopUp("Make yourself heard just as Plantin did, shout as loudly as you can to help him escape!");
       hasPopUpShownSection4 = true;
     }
   }
 
-  // pop up sectie 9
+  //  pop up section 9
   const section9 = document.querySelector('.section9');
-  if (section9) {
+  if (section9 && !hasPopUpShownSection9) {
     const rect9 = section9.getBoundingClientRect();
     const section9Middle = rect9.top + rect9.height / 2;
 
-    if (section9Middle > window.innerHeight || section9Middle < 0) {
-      hasPopUpShownSection9 = false;
-    }
-
-    if (!hasPopUpShownSection9 && section9Middle >= 0 && section9Middle <= window.innerHeight) {
+    if (section9Middle >= 0 && section9Middle <= window.innerHeight) {
       showPopUp("Find the images that describe the word and drag it to the correct word.");
       hasPopUpShownSection9 = true;
     }
@@ -415,6 +413,46 @@ const scrollText = () => {
   );
 };
 
+const scrollYear = () => {
+  gsap.fromTo(
+    ".section3__year",
+    { x: 100, opacity: 0 },
+    {
+      x: 0,
+      opacity: 1,
+      scrollTrigger: {
+        trigger: ".section3__year",
+        start: "top 99%",
+        end: "top 50%",
+        scrub: true,
+      },
+      ease: "power2.out",
+    }
+  );
+};
+
+const scrollCrown = () => {
+  gsap.fromTo(
+    ".crown",
+    {
+      x: '100vw',
+      opacity: 0,
+    },
+    {
+      x: 0,
+      opacity: 1,
+      duration: 1.5,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: ".crown",
+        start: 'top 80%',
+        end: 'top 30%',
+        scrub: true,
+      }
+    }
+  );
+};
+
 
 
 const init = () => {
@@ -427,6 +465,8 @@ const init = () => {
     scrollRise();
     scrollExclamation();
     scrollText();
+    scrollYear();
+    scrollCrown();
   }
 
   activeLink();
@@ -439,3 +479,4 @@ init();
 // popup: https://codepen.io/Asadabbas/pen/pLMNGZ
 // dropzone: https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API/File_drag_and_drop
 // roepen: https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Visualizations_with_Web_Audio_API
+// sounds: https://freesound.org/

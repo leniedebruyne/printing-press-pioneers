@@ -567,6 +567,29 @@
    font-size: 6.25rem;
    color: var(--c-green);
    margin-bottom: -1.25rem;
+   animation: wiggle 1.5s infinite ease-in-out;
+ }
+
+ @keyframes wiggle {
+   0% {
+     transform: rotate(-5deg);
+   }
+
+   25% {
+     transform: rotate(5deg);
+   }
+
+   50% {
+     transform: rotate(-5deg);
+   }
+
+   75% {
+     transform: rotate(5deg);
+   }
+
+   100% {
+     transform: rotate(0deg);
+   }
  }
 
  .section7__quote--left {
@@ -642,6 +665,13 @@
  .section8 img {
    width: 100%;
    height: auto;
+ }
+
+ .section8__circles {
+   display: flex;
+   gap: 0.625rem;
+   margin-top: 1.563rem;
+   justify-content: center;
  }
 
  .section9__highlight {
@@ -1318,13 +1348,13 @@
      font-size: 6rem;
    }
 
-   .footer__plantin{
-    margin-top: -3rem;
+   .footer__plantin {
+     margin-top: -3rem;
    }
 
-   .footer__moretus{
-    margin-bottom: 3rem;
-    margin-left: -15rem;
+   .footer__moretus {
+     margin-bottom: 3rem;
+     margin-left: -15rem;
    }
 
    .footer__contact {
@@ -1353,8 +1383,8 @@
      gap: 1rem;
    }
 
-   .footer__mail{
-    color: var(--c-pink);
+   .footer__mail {
+     color: var(--c-pink);
    }
 
  }
