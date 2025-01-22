@@ -21,8 +21,8 @@ let hasPopUpShownSection9 = false;
 const factText = document.querySelector('.section2__fact--text');
 const allLetters = document.querySelectorAll('.section2__pressletters img');
 
-const typeSound = new Audio('/printing-press-pioneers/public/type.mp3');
-const yahooSound = new Audio('/printing-press-pioneers/public/yahoo.mp3');
+const typeSound = new Audio('/printing-press-pioneers/public/sounds/type.mp3');
+const yahooSound = new Audio('/printing-press-pioneers/public/sounds/yahoo.mp3');
 let soundPlayed = false;
 
 
