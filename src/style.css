@@ -468,7 +468,11 @@
 
 
  .section6 {
-   background: linear-gradient(to bottom, var(--c-pink) 0%, var(--c-pink) 70%, var(--c-white) 80%);
+   background: linear-gradient(to bottom,
+       var(--c-pink) 0%,
+       var(--c-pink) 70%,
+       var(--c-white) 70%,
+       var(--c-white) 80%);
    overflow-x: hidden;
  }
 
@@ -481,7 +485,7 @@
  .section6__collection {
    color: var(--c-white);
    font-family: var(--font-title);
-   font-size: var(--step--2);
+   font-size: var(--step--4);
    margin-top: -1.875rem;
    margin-right: -6.25rem;
  }
@@ -498,8 +502,11 @@
    display: flex;
    flex-wrap: nowrap;
    overflow-x: auto;
+   overflow-y: hidden;
    gap: 1.25rem;
    scroll-snap-type: x mandatory;
+   padding: 0 2rem;
+   scrollbar-width: none;
  }
 
  .section6__container {
@@ -650,6 +657,7 @@
    overflow-x: auto;
    scroll-behavior: smooth;
    scrollbar-width: none;
+   padding: 0 2rem;
  }
 
  .section8__cards>div {
@@ -708,14 +716,15 @@
  }
 
  .section9__perchament {
-   position: relative;
-   margin-top: -50rem;
+   position: absolute;
+   margin-top: -5rem;
    margin-left: 4rem;
  }
 
  .section9__painting {
-   position: relative;
-   margin-top: -50rem;
+   position: absolute;
+   margin-top: -12rem;
+   margin-left: -7rem;
  }
 
  footer {
@@ -746,6 +755,10 @@
  .footer__container {
    display: flex;
    padding-bottom: 1.563rem;
+ }
+
+ .footer__mail {
+   color: var(--c-pink);
  }
 
  @media screen and (min-width: 51.25em) {
@@ -1381,10 +1394,6 @@
      flex-direction: row;
      align-items: center;
      gap: 1rem;
-   }
-
-   .footer__mail {
-     color: var(--c-pink);
    }
 
  }
