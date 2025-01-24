@@ -22,10 +22,10 @@ const factText = document.querySelector('.section2__fact--text');
 const allLetters = document.querySelectorAll('.section2__pressletters img');
 
 const cardsContainer6 = document.querySelector('.section6__cards');
-const circles6 = document.querySelectorAll('.circle');
+const circles6 = document.querySelectorAll('.section6__circles .circle');
 
-const cardsContainer8 = document.querySelector('.section9__cards');
-const circles8 = document.querySelectorAll('.section9__circles .circle');
+const cardsContainer9 = document.querySelector('.section9__cards');
+const circles9 = document.querySelectorAll('.section9__circles .circle');
 
 const typeSound = new Audio(`${import.meta.env.BASE_URL}sounds/type.mp3`);
 const yahooSound = new Audio(`${import.meta.env.BASE_URL}sounds/yahoo.mp3`);
@@ -83,24 +83,34 @@ links.forEach((link) => {
 });
 
 
-const updateActiveCircle = (cardsContainer, circles) => {
-  const scrollLeft = cardsContainer.scrollLeft; // hoe ver scroll je horizontaal
-  const cardWidth = cardsContainer.scrollWidth / circles.length; // breedte van 1 pagina
 
-  // bereken actieve index
-  const activeIndex = Math.round(scrollLeft / cardWidth);
+const updateProgress6 = () => {
+  const containerWidth = cardsContainer6.scrollWidth - cardsContainer6.clientWidth;
+  const scrollLeft = cardsContainer6.scrollLeft;
 
-  // reset circles en voeg active state doe
-  circles.forEach((circle, index) => {
-    if (index === activeIndex) {
-      circle.classList.add('active');
-    } else {
-      circle.classList.remove('active');
-    }
-  });
+  const index = Math.round((scrollLeft / containerWidth) * (circles6.length - 1));
+
+  // ensure the index is within valid bounds
+  if (index >= 0 && index < circles6.length) {
+
+    circles6.forEach(circle => circle.classList.remove('active'));
+    circles6[index].classList.add('active');
+  }
 };
-cardsContainer6.addEventListener('scroll', () => updateActiveCircle(cardsContainer6, circles6));
-cardsContainer8.addEventListener('scroll', () => updateActiveCircle(cardsContainer8, circles8));
+cardsContainer6.addEventListener('scroll', updateProgress6);
+
+
+const updateProgress9 = () => {
+  const containerWidth = cardsContainer9.scrollWidth - cardsContainer9.clientWidth;
+  const scrollLeft = cardsContainer9.scrollLeft;
+
+  const index = Math.round((scrollLeft / containerWidth) * (circles9.length - 1));
+
+  circles9.forEach(circle => circle.classList.remove('active'));
+  circles9[index].classList.add('active');
+};
+
+cardsContainer9.addEventListener('scroll', updateProgress9);
 
 
 const voiceDetection = async () => {
@@ -506,7 +516,7 @@ const init = () => {
   activeLink();
   voiceDetection();
   dragAndDrop();
-  updateActiveCircle();
+  /* updateActiveCircle(); */
 };
 
 init();
