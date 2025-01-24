@@ -274,8 +274,8 @@
  .section5,
  .section6,
  .section7,
- .section8,
- .section9 {
+ .section9,
+ .section8 {
    padding-bottom: 3.125rem;
  }
 
@@ -409,6 +409,7 @@
    background-color: var(--c-pink);
    color: var(--c-white);
    margin-top: -4.688rem;
+   margin-top: -12rem;
  }
 
  .section4__title {
@@ -459,6 +460,10 @@
 
  .section4__action {
    margin-left: 0.625rem;
+ }
+
+ .section5 {
+   padding-top: 3rem;
  }
 
  .section5__highlight {
@@ -562,6 +567,10 @@
    border-radius: 50%;
  }
 
+ .circle.active {
+   background-color: var(--c-green);
+ }
+
  .section7 {
    display: flex;
    flex-direction: column;
@@ -633,31 +642,39 @@
    padding: 0.188rem;
  }
 
- .section8 {
+ .section9 {
+   margin-top: 5rem;
    padding-bottom: 8rem;
    background: linear-gradient(to bottom, transparent 200px, var(--c-pink) 200px);
  }
 
- .section8__cards::-webkit-scrollbar {
+ .section9__circles {
+   display: flex;
+   gap: 0.625rem;
+   margin-top: 1.563rem;
+   justify-content: center;
+ }
+
+ .section9__cards::-webkit-scrollbar {
    display: none;
  }
 
- .section8__title {
+ .section9__title {
    text-align: center;
    font-size: var(--step-4);
  }
 
- .section8__subtitle{
-  display: flex;
+ .section9__subtitle {
+   display: flex;
  }
 
- .section8 h3 {
+ .section9 h3 {
    font-family: var(--font-bodycopy);
    min-width: 15rem;
    margin-left: -1rem;
  }
 
- .section8__cards {
+ .section9__cards {
    display: flex;
    gap: 75px;
    overflow-x: auto;
@@ -666,44 +683,38 @@
    padding: 0 2rem;
  }
 
- .section8__cards>div {
+ .section9__cards>div {
    flex: 0 0 calc(50% - 20px);
    max-width: calc(50% - 20px);
    opacity: 0.6;
  }
 
- .section8__cards .active {
+ .section9__cards .active {
    opacity: 1;
  }
 
- .section8 img {
+ .section9 img {
    width: 100%;
    height: auto;
  }
 
- .section8__circles {
-   display: flex;
-   gap: 0.625rem;
-   margin-top: 1.563rem;
-   justify-content: center;
- }
 
- .section9__highlight {
+ .section8__highlight {
    color: var(--c-pink);
  }
 
- .section9__title {
+ .section8__title {
    max-width: 18.75rem;
  }
 
- .section9 {
+ .section8 {
    display: flex;
    flex-direction: column;
    align-items: center;
-   padding-top: 5rem;
+   padding-top: 2rem;
  }
 
- .section9__find {
+ .section8__find {
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -716,18 +727,18 @@
    margin-bottom: 0.938rem;
  }
 
- .section9__room {
+ .section8__room {
    width: 100%;
    height: auto;
  }
 
- .section9__perchament {
+ .section8__perchament {
    position: absolute;
    margin-top: -5rem;
    margin-left: 4rem;
  }
 
- .section9__painting {
+ .section8__painting {
    position: absolute;
    margin-top: -12rem;
    margin-left: -7rem;
@@ -835,7 +846,7 @@
      flex-direction: column;
      align-items: center;
      justify-content: center;
-     padding-bottom: 3.125rem;
+     padding-bottom: -2rem;
    }
 
    .header__content {
@@ -845,26 +856,28 @@
      justify-content: flex-start;
      position: relative;
      margin-bottom: 1.25rem;
+     margin-top: -8rem;
    }
 
    .header__logo {
+     position: absolute;
      width: 8rem;
      height: 7.563rem;
-     margin-top: -25rem;
-     margin-left: -18.75rem;
+     margin-top: -3rem;
+     margin-left: -2.5rem;
    }
 
    .header__image {
      width: 28.688rem;
      height: 36.75rem;
-     margin-top: -37.5rem;
+     margin-top: -40rem;
      margin-left: 1.25rem;
    }
 
    .header__title {
      font-size: 3rem;
-     margin-right: 6.25rem;
-     margin-top: 25rem;
+     margin-right: 45.25rem;
+     margin-top: 35rem;
      min-width: 25rem;
    }
 
@@ -897,7 +910,7 @@
      color: var(--c-white);
      text-shadow: none;
      font-size: 15.406rem;
-     margin-left: 21.875rem;
+     margin-left: 5rem;
      margin-top: -12.5rem;
      font-weight: 600;
    }
@@ -1100,6 +1113,8 @@
      justify-content: flex-start;
      position: relative;
      padding-bottom: 6.25rem;
+     padding-top: 5rem;
+     margin-top: 0rem;
    }
 
    .section4::after {
@@ -1116,7 +1131,7 @@
      margin-right: 0.625rem;
      font-size: 62.5rem;
      color: var(--c-black);
-     margin-top: 18.75rem;
+     margin-top: 11rem;
      margin-bottom: 0;
    }
 
@@ -1132,7 +1147,7 @@
 
 
    .section4__escape {
-     margin-top: 35rem;
+     margin-top: 30rem;
      margin-left: -29.688rem;
      position: relative;
      z-index: 2;
@@ -1171,11 +1186,33 @@
    }
 
    .section5 {
+     position: relative;
      display: flex;
      align-items: flex-start;
      align-items: center;
      padding-bottom: 0;
+     padding-top: 0rem;
      gap: 1.25rem;
+   }
+
+   .section5::before {
+     content: "";
+     position: absolute;
+     top: 10px;
+     left: 0;
+     width: 100%;
+     height: 5px;
+     background-color: var(--c-green);
+   }
+
+   .section5::after {
+     content: "";
+     position: absolute;
+     bottom: 10px;
+     left: 0;
+     width: 100%;
+     height: 5px;
+     background-color: var(--c-green);
    }
 
    .section5__bodycopy {
@@ -1190,12 +1227,22 @@
      margin-bottom: -0.063rem;
    }
 
-   .section5__line {
+   .section5__line-1 {
      position: absolute;
      width: 0.313rem;
      background-color: var(--c-green);
      height: 44.25rem;
-     margin-left: 29.375rem;
+     margin-left: 30rem;
+     margin-top: -44.063rem;
+   }
+
+
+   .section5__line-2 {
+     position: absolute;
+     width: 0.2rem;
+     background-color: var(--c-green);
+     height: 44.25rem;
+     margin-left: 29.2rem;
      margin-top: -44.063rem;
    }
 
@@ -1274,27 +1321,30 @@
      font-size: 15.625rem;
    }
 
+   .section9 {
+     margin-top: 8rem;
+   }
 
-   .section8__cards {
+   .section9__cards {
      gap: 100px;
    }
 
-   .section8__cards>div {
+   .section9__cards>div {
      flex: 0 0 calc(33.33% - 100px);
      max-width: calc(33.33% - 100px);
      opacity: 0.6;
    }
 
 
-   .section9 {
+   .section8 {
      padding-top: 5rem;
    }
 
-   .section9__title {
+   .section8__title {
      min-width: 48.438rem;
    }
 
-   .section9__find {
+   .section8__find {
      min-width: 55rem;
      display: flex;
      flex-direction: row;
@@ -1305,14 +1355,14 @@
      background-color: var(--c-white);
    }
 
-   .section9__room {
+   .section8__room {
      width: 100%;
      height: auto;
      margin-top: -3.125rem;
      z-index: 0;
    }
 
-   .section9__perchament {
+   .section8__perchament {
      width: 10.938rem;
      height: 13.813rem;
      position: absolute;
@@ -1321,7 +1371,7 @@
      transform: rotate(20deg);
    }
 
-   .section9__painting {
+   .section8__painting {
      width: 7.625rem;
      height: 11.625rem;
      position: absolute;
@@ -1340,8 +1390,8 @@
      border-color: black;
    }
 
-   .section9__perchament,
-   .section9__painting {
+   .section8__perchament,
+   .section8__painting {
      cursor: grab;
    }
 

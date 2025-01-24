@@ -10,16 +10,22 @@ const links = document.querySelectorAll('.nav__list a');
 const image = document.querySelector('.section4__plantin');
 let position = 0;
 
-const draggableItems = document.querySelectorAll('.section9__perchament, .section9__painting');
+const draggableItems = document.querySelectorAll('.section8__perchament, .section8__painting');
 const dropzones = document.querySelectorAll('.dropzone');
 let draggedItem = null;
 
 let hasPopUpShownSection2 = false;
 let hasPopUpShownSection4 = false;
-let hasPopUpShownSection9 = false;
+let hasPopUpShownSection8 = false;
 
 const factText = document.querySelector('.section2__fact--text');
 const allLetters = document.querySelectorAll('.section2__pressletters img');
+
+const cardsContainer6 = document.querySelector('.section6__cards');
+const circles6 = document.querySelectorAll('.circle');
+
+const cardsContainer8 = document.querySelector('.section9__cards');
+const circles8 = document.querySelectorAll('.section9__circles .circle');
 
 const typeSound = new Audio(`${import.meta.env.BASE_URL}sounds/type.mp3`);
 const yahooSound = new Audio(`${import.meta.env.BASE_URL}sounds/yahoo.mp3`);
@@ -30,6 +36,13 @@ let soundPlayed = false;
 // navigatie
 hamburger.addEventListener('click', () => {
   menu.classList.toggle('visible');
+});
+
+// header button
+document.querySelector('.header__button').addEventListener('click', () => {
+  document.getElementById('printer').scrollIntoView({
+    behavior: 'smooth'
+  });
 });
 
 // progress
@@ -70,17 +83,35 @@ links.forEach((link) => {
 });
 
 
+const updateActiveCircle = (cardsContainer, circles) => {
+  const scrollLeft = cardsContainer.scrollLeft; // hoe ver scroll je horizontaal
+  const cardWidth = cardsContainer.scrollWidth / circles.length; // breedte van 1 pagina
 
-// interactie roepen
+  // bereken actieve index
+  const activeIndex = Math.round(scrollLeft / cardWidth);
+
+  // reset circles en voeg active state doe
+  circles.forEach((circle, index) => {
+    if (index === activeIndex) {
+      circle.classList.add('active');
+    } else {
+      circle.classList.remove('active');
+    }
+  });
+};
+cardsContainer6.addEventListener('scroll', () => updateActiveCircle(cardsContainer6, circles6));
+cardsContainer8.addEventListener('scroll', () => updateActiveCircle(cardsContainer8, circles8));
+
+
 const voiceDetection = async () => {
-  // mag ik geluid gebruiken?
+  // mag ik de microfoon gebruiken?
   const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
 
-  // maak een nieuwe AudioContext aan
+  // nieuwe AudioContext
   const audioContext = new AudioContext();
   const source = audioContext.createMediaStreamSource(stream);
 
-  // analyser node maken die geluidsniveaus kan opnemen
+  // analyser node maken om geluidsniveaus te meten
   const analyser = audioContext.createAnalyser();
   analyser.fftSize = 256;
   source.connect(analyser);
@@ -88,18 +119,26 @@ const voiceDetection = async () => {
   // array om data op te slaan, Uint8Array = tussen 0 en 255
   const dataArray = new Uint8Array(analyser.frequencyBinCount);
 
+  // danger section
+  const dangerSection = document.getElementById('danger');
+
   const detectVolume = () => {
+    // vul de array met waarden
     analyser.getByteFrequencyData(dataArray);
 
-    // bereken gemiddelde van het volume
+    // bereken gemiddelde van het volume (start met de eerste waarde en voeg er het volgende item in de array bij toe)
     const volume = dataArray.reduce((a, b) => a + b, 0) / dataArray.length;
 
-    // als het luid genoeg is -> beweeg afbeelding
-    if (volume > 50) {
+    // controleer of je in de juiste sectie bent
+    const rect = dangerSection.getBoundingClientRect();
+    const isInDangerSection = rect.top < window.innerHeight / 2 && rect.bottom > window.innerHeight / 2;
+
+    // als volume luid genoeg is en we in de juiste sectie zijn
+    if (isInDangerSection && volume > 50) {
       position += 10;
       image.style.transform = `translateX(${position}px)`;
 
-      // is plantin buiten het scherm?
+      // controleer of de afbeelding buiten het scherm is
       const imageRect = image.getBoundingClientRect();
       if (!soundPlayed && (imageRect.right < 0 || imageRect.left > window.innerWidth)) {
         yahooSound.play();
@@ -108,10 +147,8 @@ const voiceDetection = async () => {
     }
     requestAnimationFrame(detectVolume);
   };
-
   detectVolume();
 };
-
 
 
 // interactie afbeelding slepen
@@ -158,7 +195,6 @@ const dragAndDrop = () => {
     });
   });
 };
-
 
 
 // interactie letter voor weetje
@@ -217,12 +253,11 @@ if (window.matchMedia('(max-width: 90em)').matches) {
 }
 
 
-
 const showPopUp = (message) => {
   const popup = document.getElementById('popup');
   const popupMessage = document.getElementById('popup-message');
   popupMessage.textContent = message;
-  popup.style.display = 'flex'; // Toon de pop-up
+  popup.style.display = 'flex'; // toon de pop-up
 
   // okey = sluiten
   document.getElementById('close-popup').addEventListener('click', () => {
@@ -256,19 +291,18 @@ const popUp = () => {
     }
   }
 
-  //  pop up section 9
-  const section9 = document.querySelector('.section9');
-  if (section9 && !hasPopUpShownSection9) {
-    const rect9 = section9.getBoundingClientRect();
-    const section9Middle = rect9.top + rect9.height / 2;
+  //  pop up section 8
+  const section8 = document.querySelector('.section8');
+  if (section8 && !hasPopUpShownSection8) {
+    const rect9 = section8.getBoundingClientRect();
+    const section8Middle = rect9.top + rect9.height / 2;
 
-    if (section9Middle >= 0 && section9Middle <= window.innerHeight) {
+    if (section8Middle >= 0 && section8Middle <= window.innerHeight) {
       showPopUp("Find the images that describe the word and drag it to the correct word.");
-      hasPopUpShownSection9 = true;
+      hasPopUpShownSection8 = true;
     }
   }
 };
-
 window.addEventListener('scroll', popUp);
 window.addEventListener('load', popUp);
 
@@ -286,7 +320,7 @@ const scrollSilent = () => {
       y: 0,
       scrollTrigger: {
         trigger: "header",
-        start: "top +=100",
+        start: "top +=50",
         end: "+=500",
         scrub: true,
         pin: true,
@@ -314,7 +348,7 @@ const scrollTitle = () => {
 };
 
 const scrollLetters = () => {
-  if (window.innerWidth >= 90 * 16) { // 1 em = 16 pixels
+  if (window.matchMedia("(min-width: 90em)").matches) {
     gsap.to(
       [".default:nth-child(5)", ".blue-stroke:nth-child(6)", ".default:nth-child(7)"],
       {
@@ -472,10 +506,13 @@ const init = () => {
   activeLink();
   voiceDetection();
   dragAndDrop();
+  updateActiveCircle();
 };
 
 init();
 
+
+// getboundingclientrect: https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect
 // popup: https://codepen.io/Asadabbas/pen/pLMNGZ
 // dropzone: https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API/File_drag_and_drop
 // roepen: https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Visualizations_with_Web_Audio_API
